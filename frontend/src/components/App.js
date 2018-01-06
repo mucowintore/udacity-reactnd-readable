@@ -1,11 +1,22 @@
 import React, { Component } from 'react'
-import CardExample from './CardExample'
+import PostDetail from './PostDetail'
+import { Container } from 'semantic-ui-react'
 
 class App extends Component {
   render() {
     return (
-      <CardExample>
-      </CardExample>
+      <Container>
+        <PostDetail
+          title='Post Title'
+          timestamp={707077070}
+          author='Post Author'
+          body="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
+          category='Post Category'
+          voteScore={23}
+          commentCount={45}
+        />
+      </Container>
+
     )
   }
 }
