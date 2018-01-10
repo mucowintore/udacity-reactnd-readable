@@ -26,18 +26,20 @@ export default function PostDetail (props) {
 
   return (
     <CardUI fluid raised as='a'>
-      <Card.Header>{title}</Card.Header>
-      <Card.Metadata>{`Created at ${timestamp} by ${author}`}</Card.Metadata>
-      <Card.Description>{body}</Card.Description>
-      <Card.Extra>
+      <CardUI.Content>
+        <CardUI.Header>{title}</CardUI.Header>
+        <CardUI.Meta>{`Created at ${timestamp} by ${author}`}</CardUI.Meta>
+        <CardUI.Description>{body}</CardUI.Description>
+      </CardUI.Content>
+      <CardUI.Content extra>
         <Label tag>{category}</Label>
         <Label>
           <Icon name='comments'/> {commentCount}
         </Label>
         <Label>
-          <Icon name='star' color='yellow'/> {voteScore}
+          <Icon name='star'/> {voteScore}
         </Label>
-      </Card.Extra>
+      </CardUI.Content>
     </CardUI>
   )
 }

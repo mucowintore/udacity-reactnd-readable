@@ -2,10 +2,65 @@ import React from 'react'
 import PostDetail from './PostDetail'
 import Comment from './Comment'
 import Test from './Test'
+import * as ReadableAPI from '../ReadableAPI'
 import { Container, Header, Divider, Icon, Segment } from 'semantic-ui-react'
 
 class App extends React.Component {
   render() {
+    const post = {
+      id: Math.random().toString(36).substr(-8),
+      timestamp: Date.now(),
+      title: 'Awesome Post Title',
+      body: 'Hey there, just busy writing some awesome stuff',
+      author: 'Muco, the one and only',
+      category: 'react',
+    }
+
+    const comment = {
+      id: Math.random().toString(36).substr(8),
+      parentId: '8xf0y6ziyjabvozdd253nd',
+      timestamp: Date.now(),
+      author: 'Mucowintore',
+      body: 'Man, I love your post. Great stuff!',
+    }
+
+    // ReadableAPI.getPosts()
+    //   .then(posts => {
+    //     console.log(posts)
+    //     ReadableAPI.addPost(post)
+    //     .then(ReadableAPI.getPosts()
+    //     .then(posts => {
+    //       console.log(posts)
+    //       ReadableAPI.deletePost(post.id)
+    //       .then(ReadableAPI.getPosts()
+    //       .then(posts => console.log(posts)))
+    //     }))
+    //   })
+    // ReadableAPI.addPost(post)
+    //   .then(ReadableAPI.getPost(post.id)
+    //   .then(post => {
+    //     console.log(post)
+    //     ReadableAPI.addComment(comment)
+    //       .then(ReadableAPI.getComments())
+
+// ReadableAPI.getPosts()
+//   .then(posts => {
+//     console.log(posts)
+//     ReadableAPI.deletePost('6ni6ok3ym7mf1p33lnez')
+//     .then(ReadableAPI.deletePost('8xf0y6ziyjabvozdd253nd')
+//     .then(ReadableAPI.getPosts()
+//     .then(posts => console.log(posts))))
+//   })
+  // ReadableAPI.getPosts()
+  // .then(data => {
+  //   console.log(data)
+  //   ReadableAPI.deletePost('6ni6ok3ym7mf1p33lnez')
+  //   .then(ReadableAPI.deletePost('8xf0y6ziyjabvozdd253nd')
+  //   .then(ReadableAPI.getPosts()
+  //   .then(data => console.log(data))))
+  // // })
+
+
     return (
       <Container>
         <Segment basic textAlign='center'>
