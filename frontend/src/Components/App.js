@@ -24,42 +24,6 @@ class App extends React.Component {
       body: 'Man, I love your post. Great stuff!',
     }
 
-    // ReadableAPI.getPosts()
-    //   .then(posts => {
-    //     console.log(posts)
-    //     ReadableAPI.addPost(post)
-    //     .then(ReadableAPI.getPosts()
-    //     .then(posts => {
-    //       console.log(posts)
-    //       ReadableAPI.deletePost(post.id)
-    //       .then(ReadableAPI.getPosts()
-    //       .then(posts => console.log(posts)))
-    //     }))
-    //   })
-    // ReadableAPI.addPost(post)
-    //   .then(ReadableAPI.getPost(post.id)
-    //   .then(post => {
-    //     console.log(post)
-    //     ReadableAPI.addComment(comment)
-    //       .then(ReadableAPI.getComments())
-
-// ReadableAPI.getPosts()
-//   .then(posts => {
-//     console.log(posts)
-//     ReadableAPI.deletePost('6ni6ok3ym7mf1p33lnez')
-//     .then(ReadableAPI.deletePost('8xf0y6ziyjabvozdd253nd')
-//     .then(ReadableAPI.getPosts()
-//     .then(posts => console.log(posts))))
-//   })
-  // ReadableAPI.getPosts()
-  // .then(data => {
-  //   console.log(data)
-  //   ReadableAPI.deletePost('6ni6ok3ym7mf1p33lnez')
-  //   .then(ReadableAPI.deletePost('8xf0y6ziyjabvozdd253nd')
-  //   .then(ReadableAPI.getPosts()
-  //   .then(data => console.log(data))))
-  // // })
-
 
     return (
       <Container>

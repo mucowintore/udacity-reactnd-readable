@@ -15,14 +15,13 @@ export const getCategories = () =>
     .then(res => res.json())
     .then(data => data.categories)
 
-
-
-/* POSTS */
-
 // getCategoryPosts is OK
 export const getCategoryPosts = (category) =>
   fetch(`${api}/${category}/posts`, { headers })
     .then(res => res.json())
+
+
+/* POSTS */
 
 // getPosts is OK
 export const getPosts = () =>
