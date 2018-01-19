@@ -1,20 +1,10 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Comment as CommentUI, Header, Icon } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
 
 
-Comment.propTypes = {
-  // id: PropTypes.string.isRequired
-  // parentId: PropTypes.string.isRequired
-  author: PropTypes.string.isRequired,
-  timestamp: PropTypes.number.isRequired,
-  body: PropTypes.string.isRequired,
-  // voteScore: PropTypes.number.isRequired
-  // deleted: PropTypes.boolean.isRequired
-  // parentDeleted: PropTypes.boolean.isRequired
-}
-
-export default function Comment (props) {
+const Comment = (props) => {
   const {
     author,
     timestamp,
@@ -22,8 +12,6 @@ export default function Comment (props) {
   } = props
 
   return (
-    <CommentUI.Group>
-      <Header as='h3' dividing>Comments</Header>
       <CommentUI>
         <CommentUI.Content>
           <CommentUI.Author as='a' size='big'>{author}</CommentUI.Author>
@@ -36,7 +24,22 @@ export default function Comment (props) {
           <CommentUI.Text>{body}</CommentUI.Text>
         </CommentUI.Content>
       </CommentUI>
-    </CommentUI.Group>
-
   )
 }
+
+Comment.propTypes = {
+  // id: PropTypes.string.isRequired
+  // parentId: PropTypes.string.isRequired
+  author: PropTypes.string.isRequired,
+  timestamp: PropTypes.number.isRequired,
+  body: PropTypes.string.isRequired,
+  // voteScore: PropTypes.number.isRequired
+  // deleted: PropTypes.boolean.isRequired
+  // parentDeleted: PropTypes.boolean.isRequired
+}
+
+function mapStateToProps({ comments }, { id }) {
+  return comments[id]
+}
+
+export default connect(mapStateToProps)(Comment)
