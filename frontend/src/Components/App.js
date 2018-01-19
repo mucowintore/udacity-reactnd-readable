@@ -19,7 +19,6 @@ const App = () => (
 
         <FilterSortMenu />
 
-
         <Divider hidden />
         <PostDashboard />
         {/* <div className='postDashboard'>

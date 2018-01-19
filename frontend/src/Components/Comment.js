@@ -5,11 +5,7 @@ import PropTypes from 'prop-types'
 
 
 const Comment = (props) => {
-  const {
-    author,
-    timestamp,
-    body
-  } = props
+  const { author, timestamp, body } = props
 
   return (
       <CommentUI>
