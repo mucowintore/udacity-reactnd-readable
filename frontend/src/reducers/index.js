@@ -3,25 +3,30 @@ import {
   SORT_DISPLAYED_POSTS,
   FILTER_DISPLAYED_POSTS,
 } from '../actions'
+import _ from 'lodash'
 
 
-function posts(posts = {}, action) {
+function posts(posts, action) {
   switch(action.type) {
     case SORT_DISPLAYED_POSTS:
-      const { property } = action
+      const { newSortProperty } = action
       return {
         ...posts,
-        displayedIds: [...posts.displayedIds]
-                      .sort((idA, idB) => posts[idB][property] - posts[idA][property])
+        displayedIds: _.sortBy(posts.displayedIds, id => posts[id][newSortProperty]),
+        activeSortProperty: newSortProperty,
       }
 
     case FILTER_DISPLAYED_POSTS:
-      const { filterCategory } = action
+      const { newFilterCategory } = action
       return {
         ...posts,
-        displayedIds: filterCategory === 'all'
-                        ? Object.keys(posts)
-                        : posts.displayedIds.filter(id => posts[id].category === filterCategory)
+        displayedIds: (newFilterCategory === 'all')
+                        ? _.sortBy(posts.allIds, id => posts[id][posts.activeSortProperty])
+                        : _.chain(posts.allIds)
+                              .filter(id => posts[id].category === newFilterCategory)
+                              .sortBy(id => posts[id][newSortProperty]),
+
+        activeFilterCategory: newFilterCategory,
       }
 
     default:
@@ -29,13 +34,13 @@ function posts(posts = {}, action) {
   }
 }
 
-function comments(comments = {}, action) {
+function comments(comments, action) {
   // For now, don't handle any actions
   // Just return the state given to us
   return comments
 }
 
-function categories(categories = [], action) {
+function categories(categories, action) {
   // For now, don't handle any actions
   // Just return the state given to us
   return categories

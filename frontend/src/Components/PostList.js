@@ -13,7 +13,7 @@ const PostList = ({ postIds }) => (
 
 function mapStateToProps({ posts }) {
   return {
-    postIds: Object.keys(posts)
+    postIds: posts.displayedIds,
   }
 }
 
