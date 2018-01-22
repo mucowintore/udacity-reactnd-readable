@@ -1,98 +1,44 @@
 import { combineReducers } from 'redux'
-// import {
-//
-// } from '../actions'
+import {
+  SORT_DISPLAYED_POSTS,
+  FILTER_DISPLAYED_POSTS,
+} from '../actions'
 
-const initialState = {
-  categories: [
-      {
-        name: 'react',
-        path: 'react'
-      },
-      {
-        name: 'redux',
-        path: 'redux'
-      },
-      {
-        name: 'udacity',
-        path: 'udacity'
+
+function posts(posts = {}, action) {
+  switch(action.type) {
+    case SORT_DISPLAYED_POSTS:
+      const { property } = action
+      return {
+        ...posts,
+        displayedIds: [...posts.displayedIds]
+                      .sort((idA, idB) => posts[idB][property] - posts[idA][property])
       }
-  ],
-  posts: {
-    "8xf0y6ziyjabvozdd253nd": {
-      id: '8xf0y6ziyjabvozdd253nd',
-      timestamp: 1467166872634,
-      title: 'Udacity is the best place to learn React',
-      body: 'Everyone says so after all.',
-      author: 'thingtwo',
-      category: 'react',
-      voteScore: 6,
-      deleted: false,
-      commentCount: 2
-    },
-    "6ni6ok3ym7mf1p33lnez": {
-      id: '6ni6ok3ym7mf1p33lnez',
-      timestamp: 1468479767190,
-      title: 'Learn Redux in 10 minutes!',
-      body: 'Just kidding. It takes more than 10 minutes to learn technology.',
-      author: 'thingone',
-      category: 'redux',
-      voteScore: -5,
-      deleted: false,
-      commentCount: 0
-    },
-    "6ni6ok3ym7mf1p33lnWz": {
-      id: '6ni6ok3ym7mf1p33lnez',
-      timestamp: 1468479767190,
-      title: 'Learn Redux in 10 minutes!',
-      body: 'Just kidding. It takes more than 10 minutes to learn technology. In fact, it usually takes years to master all the intricacies of Redux. Few are those who can confidently say they have learned all there is to learn about Redux',
-      author: 'thingone',
-      category: 'redux',
-      voteScore: -5,
-      deleted: false,
-      commentCount: 0
-    }
-  },
-  comments: {
-    "894tuq4ut84ut8v4t8wun89g": {
-      id: '894tuq4ut84ut8v4t8wun89g',
-      parentId: "8xf0y6ziyjabvozdd253nd",
-      timestamp: 1468166872634,
-      body: 'Hi there! I am a COMMENT.',
-      author: 'thingtwo',
-      voteScore: 6,
-      deleted: false,
-      parentDeleted: false
-    },
-    "8tu4bsun805n8un48ve89": {
-      id: '8tu4bsun805n8un48ve89',
-      parentId: "8xf0y6ziyjabvozdd253nd",
-      timestamp: 1469479767190,
-      body: 'Comments. Are. Cool.',
-      author: 'thingone',
-      voteScore: -5,
-      deleted: false,
-      parentDeleted: false
-    }
+
+    case FILTER_DISPLAYED_POSTS:
+      const { filterCategory } = action
+      return {
+        ...posts,
+        displayedIds: filterCategory === 'all'
+                        ? Object.keys(posts)
+                        : posts.displayedIds.filter(id => posts[id].category === filterCategory)
+      }
+
+    default:
+      return posts
   }
 }
 
-function posts(state = initialState.posts, action) {
+function comments(comments = {}, action) {
   // For now, don't handle any actions
   // Just return the state given to us
-  return state
+  return comments
 }
 
-function comments(state = initialState.comments, action) {
+function categories(categories = [], action) {
   // For now, don't handle any actions
   // Just return the state given to us
-  return state
-}
-
-function categories(state = initialState.categories, action) {
-  // For now, don't handle any actions
-  // Just return the state given to us
-  return state
+  return categories
 }
 
 export default combineReducers ({

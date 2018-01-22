@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Comment as CommentUI, Header } from 'semantic-ui-react'
+import { Comment as CommentUI } from 'semantic-ui-react'
 import Comment from './Comment'
 
 

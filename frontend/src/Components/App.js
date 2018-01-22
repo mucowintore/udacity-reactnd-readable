@@ -1,11 +1,10 @@
 import React from 'react'
-import PostList from './PostList'
+import { Container, Segment, Header, Icon, Divider } from 'semantic-ui-react'
+// import * as ReadableAPI from '../ReadableAPI'
+import FilterAndSortMenu from './FilterAndSortMenu'
 import PostDashboard from './PostDashboard'
-import FilterSortMenu from './FilterSortMenu'
-import Comment from './Comment'
-import Test from './Test'
-import * as ReadableAPI from '../ReadableAPI'
-import { Container, Header, Divider, Icon, Segment } from 'semantic-ui-react'
+
+
 
 const App = () => (
       <Container>
@@ -17,14 +16,12 @@ const App = () => (
           </Header>
         </Segment>
 
-        <FilterSortMenu />
-
         <Divider hidden />
-        <PostDashboard />
-        {/* <div className='postDashboard'>
-          <PostList />
-        </div> */}
 
+        {/* Need a FilterSortMenu in order for it to be hidden in the PostDetail view - or maybe not, depending on how I use React Router */}
+        <FilterAndSortMenu />
+
+        <PostDashboard />
       </Container>
   )
 

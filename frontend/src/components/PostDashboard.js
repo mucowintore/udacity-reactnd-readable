@@ -11,7 +11,9 @@ class PostDashboard extends React.Component {
           <Icon name='add' />
           Add Post
         </Button>
+
         <Divider hidden clearing />
+
         <PostList />
       </div>
     )

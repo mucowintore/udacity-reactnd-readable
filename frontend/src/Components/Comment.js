@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Comment as CommentUI, Header, Icon } from 'semantic-ui-react'
+import { Comment as CommentUI, Icon } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
 
 
