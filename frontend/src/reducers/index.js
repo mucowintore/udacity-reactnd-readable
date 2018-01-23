@@ -2,17 +2,58 @@ import { combineReducers } from 'redux'
 import {
   SORT_DISPLAYED_POSTS,
   FILTER_DISPLAYED_POSTS,
+  FETCH_CATEGORIES_SUCCESS,
 } from '../actions'
-import _ from 'lodash'
+import { descendingSortBy } from '../utils'
 
 
-function posts(posts, action) {
+const initialPosts = {
+  "8xf0y6ziyjabvozdd253nd": {
+    id: '8xf0y6ziyjabvozdd253nd',
+    timestamp: 1467166872634,
+    title: 'Udacity is the best place to learn React',
+    body: 'Everyone says so after all.',
+    author: 'thingtwo',
+    category: 'react',
+    voteScore: 6,
+    deleted: false,
+    commentCount: 2
+  },
+  "6ni6ok3ym7mf1p33lnez": {
+    id: '6ni6ok3ym7mf1p33lnez',
+    timestamp: 1468479767190,
+    title: 'Learn Redux in 10 minutes!',
+    body: 'Just kidding. It takes more than 10 minutes to learn technology.',
+    author: 'thingone',
+    category: 'redux',
+    voteScore: -5,
+    deleted: false,
+    commentCount: 4
+  },
+  "6ni6ok3ym7mf1p33lnWz": {
+    id: '6ni6ok3ym7mf1p33lnWz',
+    timestamp: Date.now(),
+    title: 'Learn Redux in 10 minutes!',
+    body: 'Just kidding. It takes more than 10 minutes to learn technology. In fact, it usually takes years to master all the intricacies of Redux. Few are those who can confidently say they have learned all there is to learn about Redux',
+    author: 'thingone',
+    category: 'redux',
+    voteScore: 4,
+    deleted: false,
+    commentCount: 0
+  },
+  allIds: ["8xf0y6ziyjabvozdd253nd", "6ni6ok3ym7mf1p33lnez", "6ni6ok3ym7mf1p33lnWz"],
+  displayedIds: ["8xf0y6ziyjabvozdd253nd", "6ni6ok3ym7mf1p33lnez", "6ni6ok3ym7mf1p33lnWz"],
+  activeFilterCategory: 'all',
+  activeSortProperty: 'timestamp',
+}
+
+function posts(posts = initialPosts, action) {
   switch(action.type) {
     case SORT_DISPLAYED_POSTS:
       const { newSortProperty } = action
       return {
         ...posts,
-        displayedIds: _.sortBy(posts.displayedIds, id => posts[id][newSortProperty]),
+        displayedIds: descendingSortBy(posts.displayedIds, newSortProperty, posts),
         activeSortProperty: newSortProperty,
       }
 
@@ -21,10 +62,8 @@ function posts(posts, action) {
       return {
         ...posts,
         displayedIds: (newFilterCategory === 'all')
-                        ? _.sortBy(posts.allIds, id => posts[id][posts.activeSortProperty])
-                        : _.chain(posts.allIds)
-                              .filter(id => posts[id].category === newFilterCategory)
-                              .sortBy(id => posts[id][newSortProperty]),
+                        ? descendingSortBy(posts.allIds, posts.activeSortProperty, posts)
+                        : descendingSortBy(posts.allIds.filter(id => posts[id].category === newFilterCategory), posts.activeSortProperty, posts),
 
         activeFilterCategory: newFilterCategory,
       }
@@ -34,16 +73,20 @@ function posts(posts, action) {
   }
 }
 
-function comments(comments, action) {
+function comments(comments = { }, action) {
   // For now, don't handle any actions
   // Just return the state given to us
   return comments
 }
 
-function categories(categories, action) {
-  // For now, don't handle any actions
-  // Just return the state given to us
-  return categories
+function categories(categories = [], action) {
+  switch(action.type) {
+    case FETCH_CATEGORIES_SUCCESS:
+      return action.categories
+
+    default:
+      return categories
+  }
 }
 
 export default combineReducers ({

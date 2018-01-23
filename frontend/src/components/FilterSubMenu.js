@@ -2,32 +2,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Menu, Dropdown } from 'semantic-ui-react'
 import { filterDisplayedPosts } from '../actions'
+import { capitalize } from '../utils'
 
-
-const categoryOptions = [
-  {
-    text: 'All Categories',
-    value: 'all',
-  },
-  {
-    text: 'Redux',
-    value: 'redux',
-  },
-  {
-    text: 'React',
-    value: 'react',
-  }
-]
 class FilterSubMenu extends React.Component {
 
-  /* OK */
   handleChange = (e, { value }) => {
-    this.props.filterDisplayedPosts(value)
-  }
-
-  /* TODO Fetch categories from the backend using a thunk on dropdown click - or maybe not, depending on how I hydrate the Redux store with the backend data */
-  handleClick = () => {
-    // dispatch FETCH_CATEGORIES thunk
+    if(value !== this.props.activeFilterCategory){
+      this.props.filterDisplayedPosts(value)
+    }
   }
 
   render() {
@@ -37,10 +19,9 @@ class FilterSubMenu extends React.Component {
         <Menu.Item>
           <Dropdown
             selection
-            // onClick={this.handleClick}
             onChange={this.handleChange}
-            options= {categoryOptions} // TODO get just category names from mapStateToProps
-            defaultValue = {categoryOptions[0].value} // TODO how to ensure that categoryOptions[0].value is 'all'
+            options= {this.props.categories}
+            defaultValue = {this.props.categories[0].value}
           />
         </Menu.Item>
       </Menu.Menu>
@@ -49,19 +30,23 @@ class FilterSubMenu extends React.Component {
 }
 
 
-function mapStateToProps({ posts }) {
+function mapStateToProps({ posts, categories }) {
   return {
     activeFilterCategory: posts.activeFilterCategory,
+    categories: [
+                  {
+                    text: 'All Categories',
+                    value: 'all'
+                  },
+                  ...categories.map(({ name }) => ({ text: capitalize(name), value: name }))
+                ],
   }
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    filterDisplayedPosts: (newFilterCategory) => dispatch(filterDisplayedPosts(newFilterCategory))
+  }
+}
 
-/* TODO */
-// function mapDispatchToProps(dispatch) {
-//   return { }
-// }
-
-export default connect(
-  mapStateToProps,
-  { filterDisplayedPosts }
-)(FilterSubMenu)
+export default connect(mapStateToProps, mapDispatchToProps)(FilterSubMenu)

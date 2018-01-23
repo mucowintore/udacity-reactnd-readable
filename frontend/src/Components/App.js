@@ -5,10 +5,8 @@ import FilterAndSortMenu from './FilterAndSortMenu'
 import PostDashboard from './PostDashboard'
 
 
-
 const App = () => (
       <Container>
-        {/* App Title */}
         <Segment basic textAlign='center'>
           <Header as='h1' icon>
             <Icon name='book'/>
@@ -18,7 +16,6 @@ const App = () => (
 
         <Divider hidden />
 
-        {/* Need a FilterSortMenu in order for it to be hidden in the PostDetail view - or maybe not, depending on how I use React Router */}
         <FilterAndSortMenu />
 
         <PostDashboard />

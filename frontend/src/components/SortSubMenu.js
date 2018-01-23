@@ -8,7 +8,9 @@ class SortSubMenu extends React.Component {
 
   /* TODO */
   handleClick = (e, { value }) => {
-    this.props.sortDisplayedPosts(value)
+    if(value !== this.props.activeSortProperty){
+      this.props.sortDisplayedPosts(value)
+    }
   }
 
   render() {
