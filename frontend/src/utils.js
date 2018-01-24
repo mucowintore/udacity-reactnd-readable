@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import uuid from 'js-uuid'
 
 // TODO DRY the implementation
 const timeElapsed = (timestamp) => {
@@ -46,6 +47,11 @@ const descendingSortBy = (ids, sortProperty, table) => {
 const capitalize = (str) => {
   return _.capitalize(str)
 }
+
+// TODO implement generatePostId, a function that generates a v4 UUID
+// const generatePostId = () => {
+//   return uuid.v4()
+// }
 
 export {
   timeElapsed,

@@ -2,9 +2,10 @@ import { combineReducers } from 'redux'
 import {
   SORT_DISPLAYED_POSTS,
   FILTER_DISPLAYED_POSTS,
-  FETCH_CATEGORIES_SUCCESS,
+  RECEIVE_CATEGORIES,
 } from '../actions'
 import { descendingSortBy } from '../utils'
+
 
 
 const initialPosts = {
@@ -67,6 +68,8 @@ function posts(posts = initialPosts, action) {
 
         activeFilterCategory: newFilterCategory,
       }
+    // TODO Create and implement an ADD_POST case in the "posts" reducer
+    // case ADD_POST_SUCCESS:
 
     default:
       return posts
@@ -81,7 +84,7 @@ function comments(comments = { }, action) {
 
 function categories(categories = [], action) {
   switch(action.type) {
-    case FETCH_CATEGORIES_SUCCESS:
+    case RECEIVE_CATEGORIES:
       return action.categories
 
     default:

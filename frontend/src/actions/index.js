@@ -4,7 +4,7 @@ export const SORT_DISPLAYED_POSTS = 'SORT_DISPLAYED_POSTS'
 export const FILTER_DISPLAYED_POSTS = 'FILTER_DISPLAYED_POSTS'
 export const ORGANIZE_DISPLAYED_POSTS = 'ORGANIZE_DISPLAYED_POSTS'
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES'
-export const FETCH_CATEGORIES_SUCCESS = 'FETCH_CATEGORIES_SUCCESS'
+export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES'
 export const FETCH_CATEGORIES_FAILURE = 'FETCH_CATEGORIES_FAILURE'
 
 
@@ -25,14 +25,14 @@ export function filterDisplayedPosts(newFilterCategory) {
 export function fetchCategories () {
   return (dispatch) =>
     ReadableAPI.getCategories().then(
-    categories => dispatch(fetchCategoriesSuccess(categories)),
+    categories => dispatch(receiveCategories(categories)),
     error => dispatch(fetchCategoriesFailure(error)))
 }
 
 
-export function fetchCategoriesSuccess (categories) {
+export function receiveCategories (categories) {
   return {
-    type: FETCH_CATEGORIES_SUCCESS,
+    type: RECEIVE_CATEGORIES,
     categories
   }
 }
@@ -43,3 +43,8 @@ export function fetchCategoriesFailure (error) {
     error
   }
 }
+
+// TODO Create and implement an ADD_POST action
+// export function addPost(post) {
+//
+// }

@@ -3,10 +3,8 @@ import { connect } from 'react-redux'
 import { Menu } from 'semantic-ui-react'
 import { sortDisplayedPosts } from '../actions'
 
-// TODO rename component to SortSubMenu to make it clear it is a submenu of the main menu below the app header
 class SortSubMenu extends React.Component {
 
-  /* TODO */
   handleClick = (e, { value }) => {
     if(value !== this.props.activeSortProperty){
       this.props.sortDisplayedPosts(value)
@@ -40,7 +38,6 @@ class SortSubMenu extends React.Component {
 }
 
 
-  /* TODO */
   function mapStateToProps({ posts }) {
     return {
       activeSortProperty: posts.activeSortProperty,
