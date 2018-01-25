@@ -7,6 +7,8 @@ import {
 import { descendingSortBy } from '../utils'
 
 
+// Pre-populate the list of posts with 3 postIds
+// TODO Remove the posts from initialPosts once the Add Post functionality is fully implemented
 
 const initialPosts = {
   "8xf0y6ziyjabvozdd253nd": {

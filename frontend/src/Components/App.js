@@ -8,18 +8,9 @@ import PostDashboard from './PostDashboard'
 
 const App = () => (
       <Container>
-        {/* <Segment basic textAlign='center'>
-          <Header as='h1' icon>
-            <Icon name='book'/>
-            Readable
-          </Header>
-        </Segment> */}
         <Banner />
-
         <Divider hidden />
-
         <FilterAndSortMenu />
-
         <PostDashboard />
       </Container>
   )
