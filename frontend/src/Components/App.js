@@ -1,6 +1,5 @@
 import React from 'react'
 import { Container, Divider } from 'semantic-ui-react'
-// import * as ReadableAPI from '../ReadableAPI'
 import Banner from './Banner'
 import FilterAndSortMenu from './FilterAndSortMenu'
 import PostDashboard from './PostDashboard'

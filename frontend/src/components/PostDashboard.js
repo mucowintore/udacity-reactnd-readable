@@ -1,23 +1,11 @@
 import React from 'react'
 import { Divider } from 'semantic-ui-react'
+import AddPostDimmer from './AddPostDimmer'
 import PostList from './PostList'
-import AddPostModal from './AddPostModal'
-
-// class PostDashboard extends React.Component {
-//   render() {
-//     return (
-//       <div>
-//         <AddPostModal />
-//         <Divider hidden clearing />
-//         <PostList />
-//       </div>
-//     )
-//   }
-// }
 
 const PostDashboard = () => (
   <div>
-    <AddPostModal />
+    <AddPostDimmer />
     <Divider hidden clearing />
     <PostList />
   </div>
