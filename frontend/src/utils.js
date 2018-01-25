@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import uuid from 'js-uuid'
+// import uuid from 'js-uuid'
 
 // TODO DRY the implementation
 const timeElapsed = (timestamp) => {

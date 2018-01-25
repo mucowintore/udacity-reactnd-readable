@@ -1,6 +1,6 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { addPost } from '../actions'
+// import { connect } from 'react-redux'
+// import { addPost } from '../actions'
 import { Modal, Button, Icon } from 'semantic-ui-react'
 
 /**

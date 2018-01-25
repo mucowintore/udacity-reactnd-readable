@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Icon, Divider } from 'semantic-ui-react'
+import { Divider } from 'semantic-ui-react'
 import PostList from './PostList'
 import AddPostModal from './AddPostModal'
 
