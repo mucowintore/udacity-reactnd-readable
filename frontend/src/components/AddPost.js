@@ -1,8 +1,8 @@
 import React from 'react'
 import { Dimmer, Button, Icon } from 'semantic-ui-react'
+import AddPostForm from './AddPostForm'
 
-
-class AddPostDimmer extends React.Component {
+class AddPost extends React.Component {
   state = {
     active: true,
   }
@@ -24,11 +24,9 @@ class AddPostDimmer extends React.Component {
         <Dimmer
           page
           active={active}
-          onClickOutside={this.handleClose}
+          inverted={true}
         >
-          <Icon name='heart' />
-          <p>A Beautiful Dimmer!</p>
-
+          <AddPostForm />
         </Dimmer>
       </div>
     )
@@ -36,4 +34,4 @@ class AddPostDimmer extends React.Component {
 }
 
 
-export default AddPostDimmer
+export default AddPost

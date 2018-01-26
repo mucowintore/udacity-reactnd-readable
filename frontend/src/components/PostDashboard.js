@@ -1,11 +1,11 @@
 import React from 'react'
 import { Divider } from 'semantic-ui-react'
-import AddPostDimmer from './AddPostDimmer'
+import AddPost from './AddPost'
 import PostList from './PostList'
 
 const PostDashboard = () => (
   <div>
-    <AddPostDimmer />
+    <AddPost />
     <Divider hidden clearing />
     <PostList />
   </div>
