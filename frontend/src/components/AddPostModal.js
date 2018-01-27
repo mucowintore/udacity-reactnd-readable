@@ -4,18 +4,18 @@ import AddPostForm from './AddPostForm'
 
 class AddPostModal extends React.Component {
   state = {
-    active: false,
+    isOpen: false,
   }
 
-  handleOpen = () => this.setState({ active: true })
-  handleClose = () => this.setState({ active: false })
+  handleOpen = () => this.setState({ isOpen: true })
+  handleClose = () => this.setState({ isOpen: false })
 
   render() {
-    const { active } = this.state
+    const { isOpen } = this.state
     return (
       <div>
         <Button
-          icon floated='right' color='teal'
+          icon floated='right' color='green'
           onClick={this.handleOpen}
         >
           <Icon name='add' /> Add Post
@@ -23,10 +23,10 @@ class AddPostModal extends React.Component {
 
         <Dimmer
           page
-          active={active}
+          active={isOpen}
           inverted={true}
         >
-          <AddPostForm />
+          <AddPostForm closePostModal={this.handleClose} />
         </Dimmer>
       </div>
     )

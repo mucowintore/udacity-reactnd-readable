@@ -3,6 +3,7 @@ import {
   SORT_DISPLAYED_POSTS,
   FILTER_DISPLAYED_POSTS,
   RECEIVE_CATEGORIES,
+  ADD_POST,
 } from '../actions'
 import { descendingSortBy } from '../utils'
 
@@ -70,8 +71,15 @@ function posts(posts = initialPosts, action) {
 
         activeFilterCategory: newFilterCategory,
       }
-    // TODO Create and implement an ADD_POST case in the "posts" reducer
-    // case ADD_POST_SUCCESS:
+
+    case ADD_POST:
+      const { post } = action
+      return {
+        ...posts,
+        [post.id]: post,
+        // reset the filter and sort parameters to display all the posts
+        allIds: [...posts.allIds, post.id],
+      }
 
     default:
       return posts

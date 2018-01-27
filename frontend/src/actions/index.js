@@ -6,6 +6,7 @@ export const ORGANIZE_DISPLAYED_POSTS = 'ORGANIZE_DISPLAYED_POSTS'
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES'
 export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES'
 export const FETCH_CATEGORIES_FAILURE = 'FETCH_CATEGORIES_FAILURE'
+export const ADD_POST = 'ADD_POST'
 
 
 export function sortDisplayedPosts (newSortProperty) {
@@ -45,6 +46,9 @@ export function fetchCategoriesFailure (error) {
 }
 
 // TODO Create and implement an ADD_POST action
-// export function addPost(post) {
-//
-// }
+export function addPost(post) {
+  return {
+    type: ADD_POST,
+    post,
+  }
+}

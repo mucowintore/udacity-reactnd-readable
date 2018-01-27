@@ -10,7 +10,7 @@ const Post = (props) => (
     <Card fluid raised as='a'>
       <Card.Content>
         <Card.Header>{props.title}</Card.Header>
-        <Card.Meta>{`created ${timeElapsed(props.timestamp)} by`} <b>{props.author}</b> </Card.Meta>
+        <Card.Meta>created {timeElapsed(props.timestamp)} by <b>{props.author}</b> </Card.Meta>
         <Card.Description>{trim(props.body)}</Card.Description>
       </Card.Content>
       <Card.Content extra>
