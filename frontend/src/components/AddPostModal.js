@@ -2,9 +2,9 @@ import React from 'react'
 import { Dimmer, Button, Icon } from 'semantic-ui-react'
 import AddPostForm from './AddPostForm'
 
-class AddPost extends React.Component {
+class AddPostModal extends React.Component {
   state = {
-    active: true,
+    active: false,
   }
 
   handleOpen = () => this.setState({ active: true })
@@ -34,4 +34,4 @@ class AddPost extends React.Component {
 }
 
 
-export default AddPost
+export default AddPostModal
