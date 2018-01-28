@@ -23,7 +23,7 @@ export const getCategoryPosts = (category) =>
 
 /* POSTS */
 
-// getPosts is OK
+// returns an array of post objects
 export const getPosts = () =>
   fetch(`${api}/posts`, { headers })
     .then(res => res.json())

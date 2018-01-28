@@ -2,57 +2,42 @@ import { combineReducers } from 'redux'
 import {
   SORT_DISPLAYED_POSTS,
   FILTER_DISPLAYED_POSTS,
-  RECEIVE_CATEGORIES,
-  ADD_POST,
+  FETCH_CATEGORIES_SUCCESS,
+  FETCH_POSTS_SUCCESS,
+  ADD_POST_SUCCESS,
 } from '../actions'
+
 import { descendingSortBy } from '../utils'
 
-
-// Pre-populate the list of posts with 3 postIds
-// TODO Remove the posts from initialPosts once the Add Post functionality is fully implemented
-
+// TODO split the data and UI state of posts
 const initialPosts = {
-  "8xf0y6ziyjabvozdd253nd": {
-    id: '8xf0y6ziyjabvozdd253nd',
-    timestamp: 1467166872634,
-    title: 'Udacity is the best place to learn React',
-    body: 'Everyone says so after all.',
-    author: 'thingtwo',
-    category: 'react',
-    voteScore: 6,
-    deleted: false,
-    commentCount: 2
-  },
-  "6ni6ok3ym7mf1p33lnez": {
-    id: '6ni6ok3ym7mf1p33lnez',
-    timestamp: 1468479767190,
-    title: 'Learn Redux in 10 minutes!',
-    body: 'Just kidding. It takes more than 10 minutes to learn technology.',
-    author: 'thingone',
-    category: 'redux',
-    voteScore: -5,
-    deleted: false,
-    commentCount: 4
-  },
-  "6ni6ok3ym7mf1p33lnWz": {
-    id: '6ni6ok3ym7mf1p33lnWz',
-    timestamp: Date.now(),
-    title: 'Learn Redux in 10 minutes!',
-    body: 'Just kidding. It takes more than 10 minutes to learn technology. In fact, it usually takes years to master all the intricacies of Redux. Few are those who can confidently say they have learned all there is to learn about Redux',
-    author: 'thingone',
-    category: 'redux',
-    voteScore: 4,
-    deleted: false,
-    commentCount: 0
-  },
-  allIds: ["8xf0y6ziyjabvozdd253nd", "6ni6ok3ym7mf1p33lnez", "6ni6ok3ym7mf1p33lnWz"],
-  displayedIds: ["8xf0y6ziyjabvozdd253nd", "6ni6ok3ym7mf1p33lnez", "6ni6ok3ym7mf1p33lnWz"],
+  allIds: [],
+  displayedIds: [],
   activeFilterCategory: 'all',
-  activeSortProperty: 'timestamp',
+  activeSortProperty: 'timestamp'
 }
 
 function posts(posts = initialPosts, action) {
   switch(action.type) {
+    case FETCH_POSTS_SUCCESS:
+      const { posts: serverPosts } = action
+
+      // Build the data portion of the posts object
+      const properPosts =
+        serverPosts.reduce((result, post) => {
+          result[post.id] = post
+          return result
+        }, {})
+
+      return {
+        ...posts,
+        ...properPosts,
+        allIds: posts.map(post => post.id),
+        displayedIds: posts.map(post => post.id),
+      }
+
+    // FIXME the list of displayed posts is simply reversed when all the posts have the same value for newSortProperty
+    // IDEA by implementing an inverse sort function instead of just reversing the list of posts
     case SORT_DISPLAYED_POSTS:
       const { newSortProperty } = action
       return {
@@ -72,7 +57,7 @@ function posts(posts = initialPosts, action) {
         activeFilterCategory: newFilterCategory,
       }
 
-    case ADD_POST:
+    case ADD_POST_SUCCESS:
       const { post } = action
       return {
         ...posts,
@@ -86,7 +71,7 @@ function posts(posts = initialPosts, action) {
   }
 }
 
-function comments(comments = { }, action) {
+function comments(comments = {}, action) {
   // For now, don't handle any actions
   // Just return the state given to us
   return comments
@@ -94,7 +79,7 @@ function comments(comments = { }, action) {
 
 function categories(categories = [], action) {
   switch(action.type) {
-    case RECEIVE_CATEGORIES:
+    case FETCH_CATEGORIES_SUCCESS:
       return action.categories
 
     default:

@@ -26,7 +26,7 @@ class AddPostModal extends React.Component {
           active={isOpen}
           inverted={true}
         >
-          <AddPostForm closePostModal={this.handleClose} />
+          <AddPostForm handleCloseModal={this.handleClose} />
         </Dimmer>
       </div>
     )

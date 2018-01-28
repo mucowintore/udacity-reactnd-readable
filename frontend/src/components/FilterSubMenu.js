@@ -21,7 +21,7 @@ class FilterSubMenu extends React.Component {
             selection
             onChange={this.handleChange}
             options= {this.props.categories}
-            defaultValue = {this.props.categories[0].value}
+            value={this.props.activeFilterCategory}
           />
         </Menu.Item>
       </Menu.Menu>
@@ -35,18 +35,13 @@ function mapStateToProps({ posts, categories }) {
     activeFilterCategory: posts.activeFilterCategory,
     categories: [
                   {
+                    key: 'all',
                     text: 'All Categories',
                     value: 'all'
                   },
-                  ...categories.map(({ name }) => ({ text: capitalize(name), value: name }))
+                  ...categories.map(({ name }) => ({ key: name, text: capitalize(name), value: name }))
                 ],
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    filterDisplayedPosts: (newFilterCategory) => dispatch(filterDisplayedPosts(newFilterCategory))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(FilterSubMenu)
+export default connect(mapStateToProps, { filterDisplayedPosts })(FilterSubMenu)
