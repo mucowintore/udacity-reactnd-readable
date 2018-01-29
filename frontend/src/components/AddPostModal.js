@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dimmer, Button, Icon } from 'semantic-ui-react'
+import { Dimmer, Button, Icon, Grid, Header, Divider, Segment } from 'semantic-ui-react'
 import AddPostForm from './AddPostForm'
 
 class AddPostModal extends React.Component {
@@ -26,7 +26,15 @@ class AddPostModal extends React.Component {
           active={isOpen}
           inverted={true}
         >
-          <AddPostForm handleCloseModal={this.handleClose} />
+          <Grid centered>
+            <Grid.Column width={6}>
+              <Segment raised color='green'>
+                <Header as='h1' content='Add a Post' />
+                <Divider hidden />
+                <AddPostForm handleCloseModal={this.handleClose} />
+              </Segment>
+            </Grid.Column>
+          </Grid>
         </Dimmer>
       </div>
     )
