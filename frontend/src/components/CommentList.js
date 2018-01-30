@@ -1,26 +1,17 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { Comment as CommentUI } from 'semantic-ui-react'
+
 import Comment from './Comment'
 
+const sampleCommentIds = ['894tuq4ut84ut8v4t8wun89g', '8tu4bsun805n8un48ve89']
 
-const CommentList = ({ commentIds }) => (
-  <CommentUI.Group textAlign='right'>
-      {/* <Header as='h3' dividing>Comments</Header> */}
-      { commentIds.map((commentId) =>
+const CommentList = () => (
+  <CommentUI.Group>
+      { sampleCommentIds.map((commentId) =>
         <Comment key={commentId} id={commentId} />
       )}
   </CommentUI.Group>
 
 )
 
-function mapStateToProps({ comments }, { parentId }) {
-  const commentIds = Object.keys(comments)
-                      .filter(key => comments[key].parentId === parentId && !comments[key].deleted)
-
-  return {
-    commentIds
-  }
-}
-
-export default connect(mapStateToProps)(CommentList)
+export default CommentList

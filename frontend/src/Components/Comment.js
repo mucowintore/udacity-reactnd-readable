@@ -1,41 +1,51 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { Comment as CommentUI, Icon } from 'semantic-ui-react'
-import PropTypes from 'prop-types'
 
+import { timeElapsed } from '../utils'
 
-const Comment = (props) => {
-  const { author, timestamp, body } = props
+const sampleComments = {
+  "894tuq4ut84ut8v4t8wun89g": {
+    id: '894tuq4ut84ut8v4t8wun89g',
+    parentId: "8xf0y6ziyjabvozdd253nd",
+    timestamp: 1468166872634,
+    body: 'Hi there! I am a COMMENT.',
+    author: 'thingtwo',
+    voteScore: 6,
+    deleted: false,
+    parentDeleted: false
+  },
+  "8tu4bsun805n8un48ve89": {
+    id: '8tu4bsun805n8un48ve89',
+    parentId: "8xf0y6ziyjabvozdd253nd",
+    timestamp: 1469479767190,
+    body: 'Comments. Are. Cool.',
+    author: 'thingone',
+    voteScore: -5,
+    deleted: false,
+    parentDeleted: false
+  }
+}
+
+// TODO Add edit and delete buttons
+const Comment = ({ id }) => {
+  const { author, timestamp, body, voteScore } = sampleComments[id]
 
   return (
-      <CommentUI>
-        <CommentUI.Content>
-          <CommentUI.Author as='a' size='big'>{author}</CommentUI.Author>
-          <CommentUI.Metadata>
-            <div>{timestamp}</div>
-            <div>
-              <Icon name='star' /> 5 Faves
-            </div>
-          </CommentUI.Metadata>
-          <CommentUI.Text>{body}</CommentUI.Text>
-        </CommentUI.Content>
-      </CommentUI>
+    <CommentUI>
+      <CommentUI.Content>
+        <CommentUI.Author as='a' size='big'>{author}</CommentUI.Author>
+        <CommentUI.Metadata>
+          <div>{timeElapsed(timestamp)}</div>
+          <div>
+            <Icon link name='angle down'/><Icon name='star' color='yellow' />{voteScore} <Icon link name='angle up' />
+          </div>
+          <Icon link name='pencil' color='green' />
+          <Icon link name='trash outline' color='red' />
+        </CommentUI.Metadata>
+        <CommentUI.Text>{body}</CommentUI.Text>
+      </CommentUI.Content>
+    </CommentUI>
   )
 }
 
-Comment.propTypes = {
-  // id: PropTypes.string.isRequired
-  // parentId: PropTypes.string.isRequired
-  author: PropTypes.string.isRequired,
-  timestamp: PropTypes.number.isRequired,
-  body: PropTypes.string.isRequired,
-  // voteScore: PropTypes.number.isRequired
-  // deleted: PropTypes.boolean.isRequired
-  // parentDeleted: PropTypes.boolean.isRequired
-}
-
-function mapStateToProps({ comments }, { id }) {
-  return comments[id]
-}
-
-export default connect(mapStateToProps)(Comment)
+export default Comment
