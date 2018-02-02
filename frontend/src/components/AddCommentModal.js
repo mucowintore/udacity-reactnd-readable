@@ -1,29 +1,25 @@
 import React from 'react'
-import { Dimmer, Button, Icon, Grid, Header, Divider, Segment } from 'semantic-ui-react'
+import { Button, Icon } from 'semantic-ui-react'
+
+import FormModal from './FormModal'
+import AddCommentForm from './AddCommentForm'
+
 
 const isOpen = false
 
-const AddCommentModal = () => (
-  <div>
-    <Button icon compact color='green'>
-      <Icon name='add' /> Add Comment
-    </Button>
+const placeholder = (
+  <Button icon compact color='green'>
+    <Icon name='add' /> Add Comment
+  </Button>
+)
 
-    <Dimmer
-      page
-      active={isOpen}
-      inverted={true}
-    >
-      <Grid centered>
-        <Grid.Column width={6}>
-          <Segment raised color='green'>
-            <Header as='h1' content='Add a Comment' />
-            <Divider hidden />
-          </Segment>
-        </Grid.Column>
-      </Grid>
-    </Dimmer>
-  </div>
+const AddCommentModal = () => (
+  <FormModal
+    title='Add Comment'
+    color='green'
+    form={<AddCommentForm/>}
+    placeholder={placeholder}
+  />
 )
 
 export default AddCommentModal
