@@ -18,7 +18,7 @@ class FormModal extends React.Component {
         {/* Render a placeholder button with its onClick property set to this.handleOpen */}
         {
           React.cloneElement(
-            this.props.placeholderButton,
+            this.props.placeholder,
             { onClick: this.handleOpen}
           )
         }
