@@ -5,8 +5,6 @@ import FormModal from './FormModal'
 import AddCommentForm from './AddCommentForm'
 
 
-const isOpen = false
-
 const placeholder = (
   <Button icon compact color='green'>
     <Icon name='add' /> Add Comment

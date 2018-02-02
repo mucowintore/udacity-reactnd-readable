@@ -6,7 +6,7 @@ import FilterAndSortMenu from './FilterAndSortMenu'
 import PostDashboard from './PostDashboard'
 import PostDetail from './PostDetail'
 
-const postDetailView = false
+const postDetailView = true
 
 const App = () => (
       postDetailView

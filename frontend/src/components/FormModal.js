@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dimmer, Button, Icon, Grid, Header, Divider, Segment } from 'semantic-ui-react'
+import { Dimmer, Grid, Header, Divider, Segment } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
 
 

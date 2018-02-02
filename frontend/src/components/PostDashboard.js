@@ -1,11 +1,22 @@
 import React from 'react'
-import { Divider } from 'semantic-ui-react'
-import AddPostModal from './AddPostModal'
+import { Divider, Button, Icon } from 'semantic-ui-react'
+
 import PostList from './PostList'
+import FormModal from './FormModal'
+import AddPostForm from './AddPostForm'
 
 const PostDashboard = () => (
   <div>
-    <AddPostModal />
+    <FormModal
+      title='Add a Post'
+      color='green'
+      form={<AddPostForm/>}
+      placeholder={
+        <Button icon floated='right' color='green'>
+          <Icon name='add' /> Add Post
+        </Button>
+      }
+    />
     <Divider hidden clearing />
     <PostList />
   </div>
