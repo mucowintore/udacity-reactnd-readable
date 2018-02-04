@@ -1,7 +1,10 @@
 import React from 'react'
 import { Comment as CommentUI, Icon } from 'semantic-ui-react'
 
+import FormModal from './FormModal'
+import EditCommentForm from './EditCommentForm'
 import { timeElapsed } from '../utils'
+
 
 const sampleComments = {
   "894tuq4ut84ut8v4t8wun89g": {
@@ -39,7 +42,14 @@ const Comment = ({ id }) => {
           <div>
             <Icon link name='angle down'/><Icon name='star' color='yellow' />{voteScore} <Icon link name='angle up' />
           </div>
-          <Icon link name='pencil' color='green' />
+          <FormModal
+            title='Edit Comment'
+            color='green'
+            form={<EditCommentForm/>}
+            placeholder={
+              <Icon link name='pencil' color='green' />
+            }
+          />
           <Icon link name='trash outline' color='red' />
         </CommentUI.Metadata>
         <CommentUI.Text>{body}</CommentUI.Text>

@@ -1,10 +1,9 @@
 import React from 'react'
 import { Form, Icon, Button } from 'semantic-ui-react'
 
-
-const AddCommentForm = () => (
+const EditCommentForm = () => (
   <Form>
-    <Form.Input 
+    <Form.Input
       fluid
       label='Author'
       name='author'
@@ -26,4 +25,4 @@ const AddCommentForm = () => (
   </Form>
 )
 
-export default AddCommentForm
+export default EditCommentForm

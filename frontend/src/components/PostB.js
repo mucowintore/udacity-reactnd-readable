@@ -1,9 +1,9 @@
 import React from 'react'
 import { Card, Label, Icon, Grid } from 'semantic-ui-react'
-import { timeElapsed, trim } from '../utils'
 
 import FormModal from './FormModal'
 import EditPostForm from './EditPostForm'
+import { timeElapsed, trim } from '../utils'
 
 const samplePost = {
   id: '8xf0y6ziyjabvozdd253nd',
