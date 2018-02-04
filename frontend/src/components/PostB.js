@@ -2,6 +2,9 @@ import React from 'react'
 import { Card, Label, Icon, Grid } from 'semantic-ui-react'
 import { timeElapsed, trim } from '../utils'
 
+import FormModal from './FormModal'
+import EditPostForm from './EditPostForm'
+
 const samplePost = {
   id: '8xf0y6ziyjabvozdd253nd',
   timestamp: 1467166872634,
@@ -34,11 +37,18 @@ const PostB = () => {
         <Card.Content>
           <Card.Header>
             <Grid>
-              <Grid.Column width={14}>
+              <Grid.Column width={12}>
                 {title}
               </Grid.Column>
-              <Grid.Column width={2} textAlign='right'>
-                <Icon link name='pencil' color='green'/>
+              <Grid.Column width={4} textAlign='right'>
+                <FormModal
+                  title='Edit Post'
+                  color='green'
+                  form={<EditPostForm/>}
+                  placeholder={
+                    <Icon link name='pencil' color='green'/>
+                  }
+                />
                 <Icon link name='trash' color='red'/>
               </Grid.Column>
             </Grid></Card.Header>

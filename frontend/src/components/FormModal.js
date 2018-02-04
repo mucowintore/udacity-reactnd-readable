@@ -14,7 +14,7 @@ class FormModal extends React.Component {
   render() {
     const { isOpen } = this.state
     return (
-      <div>
+      <span>
         {/* Render a placeholder button with its onClick property set to this.handleOpen */}
         {
           React.cloneElement(
@@ -44,7 +44,7 @@ class FormModal extends React.Component {
             </Grid.Column>
           </Grid>
         </Dimmer>
-      </div>
+      </span>
     )
   }
 }

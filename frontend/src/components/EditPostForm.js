@@ -1,12 +1,7 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { Form, Icon, Button } from 'semantic-ui-react'
 
-import { capitalize, generateId } from '../utils'
-import { addPost } from '../actions'
-
-
-class AddPostForm extends React.Component {
+class EditPostForm extends React.Component {
   state = {
     title: '',
     author: '',
@@ -14,27 +9,15 @@ class AddPostForm extends React.Component {
     body: '',
   }
 
-  handleChange = (e, { name, value }) => this.setState({ [name]: value })
-
-  handleSubmit = (e) => {
-    const post = {
-      id: generateId(),
-      timestamp: Date.now(),
-      ...this.state,
-    }
-
-    this.props.addPost(post)
-    this.props.handleCloseModal()
-    e.preventDefault()
-  }
-
-  handleCancel = (e) => {
-    this.props.handleCloseModal()
-    e.preventDefault()
-  }
-
+  /**
+   * TODO handleChange
+   * TODO handleSubmit
+   * TODO handleCancel
+   */
+   
   render() {
     const { title, author, body } = this.state
+
     return (
       <Form>
         <Form.Input
@@ -64,7 +47,7 @@ class AddPostForm extends React.Component {
         </Form.Group>
         <Form.TextArea
           label='Post Content'
-          name='body' 
+          name='body'
           placeholder='Type here...'
           value={body}
           onChange={this.handleChange}
@@ -74,7 +57,7 @@ class AddPostForm extends React.Component {
             icon
             color='green'
             onClick={this.handleSubmit}
-          >
+            >
             <Icon name='checkmark' /> Submit
           </Form.Button>
           <Button
@@ -82,7 +65,7 @@ class AddPostForm extends React.Component {
             compact
             color='red'
             onClick={this.handleCancel}
-          >
+           >
             <Icon name='remove'/> Cancel
           </Button>
         </Form.Group>
@@ -91,11 +74,15 @@ class AddPostForm extends React.Component {
   }
 }
 
-function mapStateToProps ({ categories }) {
-  return {
-    categories: categories.map(({ name }) => ({ key: name, text: capitalize(name), value: name }))
-  }
-}
+// TODO Fetch categories from the store
+// TODO Fetch the detailed post's info from the store
+// function mapStateToProps() {
+//
+// }
 
+// TODO Fetch the editPost action creator
+// function mapDispatchToProps() {
+//
+// }
 
-export default connect(mapStateToProps, { addPost })(AddPostForm)
+export default EditPostForm
