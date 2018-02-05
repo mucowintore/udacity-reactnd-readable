@@ -38,10 +38,7 @@ const trim = (str) => {
 }
 
 const descendingSortBy = (ids, sortProperty, table) => {
-  return _.chain(ids)
-            .sortBy(id => table[id][sortProperty])
-            .reverse()
-            .value()
+  return ids.sort((idA, idB) => table[idA][sortProperty] - table[idB][sortProperty])
 }
 
 const capitalize = (str) => {

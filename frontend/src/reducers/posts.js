@@ -33,8 +33,6 @@ const posts = (posts = initialPosts, action) => {
         displayedIds: posts.map(post => post.id),
       }
 
-    // FIXME the list of displayed posts is simply reversed when all the posts have the same value for newSortProperty
-    // IDEA by implementing an inverse sort function instead of just reversing the list of posts
     case SORT_DISPLAYED_POSTS:
       const { newSortProperty } = action
       return {
