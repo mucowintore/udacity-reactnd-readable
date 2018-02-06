@@ -1,13 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Menu } from 'semantic-ui-react'
-import { sortDisplayedPosts } from '../actions'
+import { setSortProperty } from '../actions'
 
 class SortSubMenu extends React.Component {
 
   handleClick = (e, { value }) => {
     if(value !== this.props.activeSortProperty){
-      this.props.sortDisplayedPosts(value)
+      this.props.setSortProperty(value)
     }
   }
 
@@ -38,13 +38,13 @@ class SortSubMenu extends React.Component {
 }
 
 
-  function mapStateToProps({ posts }) {
+  function mapStateToProps({ ui }) {
     return {
-      activeSortProperty: posts.activeSortProperty,
+      activeSortProperty: ui.activeSortProperty,
     }
   }
 
   export default connect(
     mapStateToProps,
-    { sortDisplayedPosts }
+    { setSortProperty }
   )(SortSubMenu)

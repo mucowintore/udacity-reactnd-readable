@@ -5,7 +5,7 @@ import {
 const categories = (categories = [], action) => {
   switch(action.type) {
     case FETCH_CATEGORIES_SUCCESS:
-      return action.categories
+      return action.fetchedCategories
 
     default:
       return categories

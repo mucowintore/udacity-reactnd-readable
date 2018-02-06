@@ -37,9 +37,6 @@ const trim = (str) => {
   return str.length > trimLength ? `${str.substr(0, trimLength)}...` : str
 }
 
-const descendingSortBy = (ids, sortProperty, table) => {
-  return ids.sort((idA, idB) => table[idA][sortProperty] - table[idB][sortProperty])
-}
 
 const capitalize = (str) => {
   return _.capitalize(str)
@@ -52,7 +49,6 @@ const generateId = () => {
 export {
   timeElapsed,
   trim,
-  descendingSortBy,
   capitalize,
   generateId,
 }

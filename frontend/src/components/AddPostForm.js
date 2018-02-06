@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Form, Icon, Button } from 'semantic-ui-react'
 
 import { capitalize, generateId } from '../utils'
-import { addPost } from '../actions'
+import { addPost, clearFilterAndSort } from '../actions'
 
 
 class AddPostForm extends React.Component {
@@ -24,6 +24,7 @@ class AddPostForm extends React.Component {
     }
 
     this.props.addPost(post)
+    this.props.clearFilterAndSort()
     this.props.handleCloseModal()
     e.preventDefault()
   }
@@ -64,7 +65,7 @@ class AddPostForm extends React.Component {
         </Form.Group>
         <Form.TextArea
           label='Post Content'
-          name='body' 
+          name='body'
           placeholder='Type here...'
           value={body}
           onChange={this.handleChange}
@@ -98,4 +99,4 @@ function mapStateToProps ({ categories }) {
 }
 
 
-export default connect(mapStateToProps, { addPost })(AddPostForm)
+export default connect(mapStateToProps, { addPost, clearFilterAndSort })(AddPostForm)

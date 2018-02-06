@@ -1,7 +1,8 @@
 import * as ReadableAPI from '../ReadableAPI'
 
-export const SORT_DISPLAYED_POSTS = 'SORT_DISPLAYED_POSTS'
-export const FILTER_DISPLAYED_POSTS = 'FILTER_DISPLAYED_POSTS'
+export const SET_FILTER_CATEGORY = 'SET_FILTER_CATEGORY'
+export const SET_SORT_PROPERTY = 'SET_SORT_PROPERTY'
+export const CLEAR_FILTER_AND_SORT = 'CLEAR_FILTER_AND_SORT'
 
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES'
 export const FETCH_CATEGORIES_SUCCESS = 'FETCH_CATEGORIES_SUCCESS'
@@ -10,27 +11,29 @@ export const FETCH_CATEGORIES_FAILURE = 'FETCH_CATEGORIES_FAILURE'
 export const FETCH_POSTS = 'FETCH_POSTS'
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS'
 export const FETCH_POSTS_FAILURE = 'FETCH_POSTS_FAILURE'
-
 export const ADD_POST = 'ADD_POST'
 export const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS'
 export const ADD_POST_FAILURE = 'ADD_POST_FAILURE'
 
 
-
-
-export function sortDisplayedPosts (newSortProperty) {
+export function setFilterCategory (newFilterCategory) {
   return {
-    type: SORT_DISPLAYED_POSTS,
+    type: SET_FILTER_CATEGORY,
+    newFilterCategory
+  }
+}
+export function setSortProperty (newSortProperty) {
+  return {
+    type: SET_SORT_PROPERTY,
     newSortProperty,
   }
 }
-
-export function filterDisplayedPosts(newFilterCategory) {
+export function clearFilterAndSort () {
   return {
-    type: FILTER_DISPLAYED_POSTS,
-    newFilterCategory,
+    type: CLEAR_FILTER_AND_SORT,
   }
 }
+
 
 
 export function fetchCategories () {
@@ -40,13 +43,12 @@ export function fetchCategories () {
       error => dispatch(fetchCategoriesFailure(error))
     )
 }
-export function fetchCategoriesSuccess (categories) {
+export function fetchCategoriesSuccess (fetchedCategories) {
   return {
     type: FETCH_CATEGORIES_SUCCESS,
-    categories,
+    fetchedCategories,
   }
 }
-// TODO Handle the FETCH_CATEGORIES_FAILURE action in the categories reducer
 export function fetchCategoriesFailure (error) {
   return {
     type: FETCH_CATEGORIES_FAILURE,
@@ -62,10 +64,10 @@ export function fetchPosts () {
       error => dispatch(fetchPostsFailure(error))
     )
 }
-export function fetchPostsSuccess (posts) {
+export function fetchPostsSuccess (fetchedPosts) {
   return {
     type: FETCH_POSTS_SUCCESS,
-    posts,
+    fetchedPosts,
   }
 }
 export function fetchPostsFailure (error) {
@@ -75,16 +77,11 @@ export function fetchPostsFailure (error) {
   }
 }
 
-// Add a post to the local backend server
+
 export function addPost (postData) {
   return (dispatch) =>
     ReadableAPI.addPost(postData).then(
-      post => {
-        dispatch(addPostSuccess(post))
-        // reset the sort and filter parameters to show all the posts, including the newly created post
-        dispatch(sortDisplayedPosts('timestamp'))
-        dispatch(filterDisplayedPosts('all'))
-      },
+      post => dispatch(addPostSuccess(post)),
       error => dispatch(addPostFailure(error))
     )
 }
@@ -94,7 +91,6 @@ export function addPostSuccess (post) {
     post,
   }
 }
-// TODO Handle ADD_POST_FAILURE action in the posts reducer
 export function addPostFailure (error) {
   return {
     type: FETCH_CATEGORIES_FAILURE,

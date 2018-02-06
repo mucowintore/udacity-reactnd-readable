@@ -1,14 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Menu, Dropdown } from 'semantic-ui-react'
-import { filterDisplayedPosts } from '../actions'
+import { setFilterCategory } from '../actions'
 import { capitalize } from '../utils'
 
 class FilterSubMenu extends React.Component {
 
   handleChange = (e, { value }) => {
     if(value !== this.props.activeFilterCategory){
-      this.props.filterDisplayedPosts(value)
+      this.props.setFilterCategory(value)
     }
   }
 
@@ -30,9 +30,9 @@ class FilterSubMenu extends React.Component {
 }
 
 
-function mapStateToProps({ posts, categories }) {
+function mapStateToProps({ ui, categories }) {
   return {
-    activeFilterCategory: posts.activeFilterCategory,
+    activeFilterCategory: ui.activeFilterCategory,
     categories: [
                   {
                     key: 'all',
@@ -44,4 +44,4 @@ function mapStateToProps({ posts, categories }) {
   }
 }
 
-export default connect(mapStateToProps, { filterDisplayedPosts })(FilterSubMenu)
+export default connect(mapStateToProps, { setFilterCategory })(FilterSubMenu)

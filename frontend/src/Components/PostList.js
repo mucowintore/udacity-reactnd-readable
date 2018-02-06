@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
+
 import Post from './Post'
+import { getVisiblePostIds } from '../reducers/posts'
 
 
 const PostList = ({ postIds }) => (
@@ -11,9 +13,9 @@ const PostList = ({ postIds }) => (
       </div>
     )
 
-function mapStateToProps({ posts }) {
+function mapStateToProps({ posts, ui }) {
   return {
-    postIds: posts.displayedIds,
+    postIds: getVisiblePostIds(ui.activeFilterCategory, ui.activeSortProperty, posts),
   }
 }
 
