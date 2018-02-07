@@ -1,10 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import 'semantic-ui-css/semantic.min.css'
+import { BrowserRouter } from 'react-router-dom'
 import { createStore, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
-import { Provider } from 'react-redux'
+import 'semantic-ui-css/semantic.min.css'
 
 import App from './components/App'
 import {
@@ -47,7 +48,9 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 )
