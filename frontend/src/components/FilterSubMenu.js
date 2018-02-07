@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Menu, Dropdown } from 'semantic-ui-react'
 import { setFilterCategory } from '../actions'
-import { capitalize } from '../utils'
+import { getDropdownCategories } from '../reducers/categories'
 
 class FilterSubMenu extends React.Component {
 
@@ -33,14 +33,7 @@ class FilterSubMenu extends React.Component {
 function mapStateToProps({ ui, categories }) {
   return {
     activeFilterCategory: ui.activeFilterCategory,
-    categories: [
-                  {
-                    key: 'all',
-                    text: 'All Categories',
-                    value: 'all'
-                  },
-                  ...categories.map(({ name }) => ({ key: name, text: capitalize(name), value: name }))
-                ],
+    categories: getDropdownCategories(categories)
   }
 }
 
