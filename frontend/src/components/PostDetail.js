@@ -1,16 +1,19 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Divider, Icon } from 'semantic-ui-react'
 
 // TODO Replace PostB with Post once I make PostDetail stateful and dynamic
-import PostB from './PostB'
+import DetailedPost from './DetailedPost'
 import CommentDashboard from './CommentDashboard'
 
 
 const PostDetail = () => (
   <div>
-    <Icon link name='angle left' size='big'/>
+    <Link to='/'>
+      <Icon name='angle left' size='big' color='black'/>
+    </Link>
     <Divider hidden />
-    <PostB />
+    <DetailedPost />
     <Divider hidden />
     <CommentDashboard />
   </div>

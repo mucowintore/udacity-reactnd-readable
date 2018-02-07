@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { Card, Label, Icon } from 'semantic-ui-react'
 // import CommentList from './CommentList'
 import { timeElapsed, trim } from '../utils.js'
 
 
 const Post = (props) => (
-    <Card fluid raised as='a'>
+    <Card fluid raised as={Link} to={`/${props.category}/${props.id}`}>
       <Card.Content>
         <Card.Header>{props.title}</Card.Header>
         <Card.Meta>created {timeElapsed(props.timestamp)} by <b>{props.author}</b> </Card.Meta>

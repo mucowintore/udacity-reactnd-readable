@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Form, Icon, Button } from 'semantic-ui-react'
 
-import { capitalize, generateId } from '../utils'
+import { capitalize, generateId, redirectTo } from '../utils'
 import { addPost } from '../actions'
 
 
@@ -24,8 +24,7 @@ class AddPostForm extends React.Component {
     }
 
     this.props.addPost(post)
-    // this.props.clearFilterAndSort()
-    // TODO reset the sort and filter parameters somehow, maybe by redirecting to the root page
+    redirectTo('/')
     this.props.handleCloseModal()
     e.preventDefault()
   }

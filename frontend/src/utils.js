@@ -46,9 +46,14 @@ const generateId = () => {
   return uuid.v4()
 }
 
+const redirectTo = (history, destination) => {
+  history.push({ pathname: `/${destination}`})
+}
+
 export {
   timeElapsed,
   trim,
   capitalize,
   generateId,
+  redirectTo
 }
