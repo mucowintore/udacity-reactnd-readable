@@ -1,12 +1,15 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Form, Icon, Button } from 'semantic-ui-react'
+
+import { getDropdownCategories } from '../reducers/categories'
 
 class EditPostForm extends React.Component {
   state = {
-    title: '',
-    author: '',
-    category: '',
-    body: '',
+    title: this.props.post.title,
+    author: this.props.post.author,
+    category: this.props.post.category,
+    body: this.props.post.body,
   }
 
   /**
@@ -14,9 +17,10 @@ class EditPostForm extends React.Component {
    * TODO handleSubmit
    * TODO handleCancel
    */
-   
+
   render() {
-    const { title, author, body } = this.state
+    const { title, author, body, category } = this.state
+    const { categories } = this.props.categories
 
     return (
       <Form>
@@ -41,7 +45,8 @@ class EditPostForm extends React.Component {
             label='Category'
             name='category'
             placeholder='Pick a category'
-            options={this.props.categories}
+            options={categories}
+            value={category}
             onChange={this.handleChange}
           />
         </Form.Group>
@@ -76,13 +81,22 @@ class EditPostForm extends React.Component {
 
 // TODO Fetch categories from the store
 // TODO Fetch the detailed post's info from the store
-// function mapStateToProps() {
-//
-// }
+function mapStateToProps({ categories, posts, ui }) {
+  const { title, author, body, category } = posts[ui.currentDetailedPostId]
+  return {
+    post: {
+      title,
+      author,
+      body,
+      category,
+    },
+    categories: getDropdownCategories(categories)
+  }
+}
 
 // TODO Fetch the editPost action creator
 // function mapDispatchToProps() {
 //
 // }
 
-export default EditPostForm
+export default connect(mapStateToProps)(EditPostForm)
