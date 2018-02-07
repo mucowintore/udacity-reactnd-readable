@@ -1,14 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import { Menu, Dropdown } from 'semantic-ui-react'
-import { setFilterCategory } from '../actions'
 import { getDropdownCategories } from '../reducers/categories'
 
 class FilterSubMenu extends React.Component {
-
+  redirect = (to) => {
+    this.props.history.push({ pathname: `/${to}`})
+  }
   handleChange = (e, { value }) => {
     if(value !== this.props.activeFilterCategory){
-      this.props.setFilterCategory(value)
+      this.redirect(value)
     }
   }
 
@@ -21,6 +23,7 @@ class FilterSubMenu extends React.Component {
             selection
             onChange={this.handleChange}
             options= {this.props.categories}
+            placeholder='Pick a Category'
             value={this.props.activeFilterCategory}
           />
         </Menu.Item>
@@ -30,11 +33,12 @@ class FilterSubMenu extends React.Component {
 }
 
 
-function mapStateToProps({ ui, categories }) {
+function mapStateToProps({ ui, categories }, { history, match }) {
   return {
-    activeFilterCategory: ui.activeFilterCategory,
-    categories: getDropdownCategories(categories)
+    categories: getDropdownCategories(categories),
+    activeFilterCategory: match.params.category || 'all',
+    history,
   }
 }
 
-export default connect(mapStateToProps, { setFilterCategory })(FilterSubMenu)
+export default withRouter(connect(mapStateToProps)(FilterSubMenu))

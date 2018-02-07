@@ -1,26 +1,23 @@
 import React from 'react'
+import { Route } from 'react-router-dom'
 import { Container, Divider } from 'semantic-ui-react'
 
 import Banner from './Banner'
 import FilterAndSortMenu from './FilterAndSortMenu'
 import PostDashboard from './PostDashboard'
-import PostDetail from './PostDetail'
-
-const postDetailView = false
 
 const App = () => (
-      postDetailView
-        ? <Container>
-            <Banner />
-            <Divider hidden />
-            <PostDetail />
-          </Container>
-        : <Container>
-            <Banner />
-            <Divider hidden />
-            <FilterAndSortMenu />
-            <PostDashboard />
-          </Container>
+  <Container>
+    <Banner />
+    <Divider hidden />
+    <Route path='/:category?' render={() => (
+      <div>
+        <FilterAndSortMenu />
+        <PostDashboard />
+      </div>
+    )}/>
+
+  </Container>
 )
 
 export default App
