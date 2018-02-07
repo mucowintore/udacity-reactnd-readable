@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Form, Icon, Button } from 'semantic-ui-react'
 
 import { capitalize, generateId } from '../utils'
-import { addPost, clearFilterAndSort } from '../actions'
+import { addPost } from '../actions'
 
 
 class AddPostForm extends React.Component {
@@ -24,7 +24,8 @@ class AddPostForm extends React.Component {
     }
 
     this.props.addPost(post)
-    this.props.clearFilterAndSort()
+    // this.props.clearFilterAndSort()
+    // TODO reset the sort and filter parameters somehow, maybe by redirecting to the root page
     this.props.handleCloseModal()
     e.preventDefault()
   }
@@ -99,4 +100,4 @@ function mapStateToProps ({ categories }) {
 }
 
 
-export default connect(mapStateToProps, { addPost, clearFilterAndSort })(AddPostForm)
+export default connect(mapStateToProps, { addPost })(AddPostForm)

@@ -5,8 +5,8 @@ import { Menu, Dropdown } from 'semantic-ui-react'
 import { getDropdownCategories } from '../reducers/categories'
 
 class FilterSubMenu extends React.Component {
-  redirect = (to) => {
-    this.props.history.push({ pathname: `/${to}`})
+  redirect = (destination) => {
+    this.props.history.push({ pathname: `/${destination}`})
   }
   handleChange = (e, { value }) => {
     if(value !== this.props.activeFilterCategory){

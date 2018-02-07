@@ -1,8 +1,6 @@
 import * as ReadableAPI from '../ReadableAPI'
 
-export const SET_FILTER_CATEGORY = 'SET_FILTER_CATEGORY'
 export const SET_SORT_PROPERTY = 'SET_SORT_PROPERTY'
-export const CLEAR_FILTER_AND_SORT = 'CLEAR_FILTER_AND_SORT'
 
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES'
 export const FETCH_CATEGORIES_SUCCESS = 'FETCH_CATEGORIES_SUCCESS'
@@ -16,24 +14,12 @@ export const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS'
 export const ADD_POST_FAILURE = 'ADD_POST_FAILURE'
 
 
-export function setFilterCategory (newFilterCategory) {
-  return {
-    type: SET_FILTER_CATEGORY,
-    newFilterCategory
-  }
-}
 export function setSortProperty (newSortProperty) {
   return {
     type: SET_SORT_PROPERTY,
     newSortProperty,
   }
 }
-export function clearFilterAndSort () {
-  return {
-    type: CLEAR_FILTER_AND_SORT,
-  }
-}
-
 
 
 export function fetchCategories () {
