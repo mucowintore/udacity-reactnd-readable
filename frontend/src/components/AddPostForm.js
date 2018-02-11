@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Form, Icon, Button } from 'semantic-ui-react'
 
 import { capitalize, generateId, redirectTo } from '../utils'
-import { addPost } from '../actions'
+import { addPost } from '../actions/posts'
 
 
 class AddPostForm extends React.Component {
@@ -24,8 +24,8 @@ class AddPostForm extends React.Component {
     }
 
     this.props.addPost(post)
-    redirectTo('/')
     this.props.handleCloseModal()
+    redirectTo('/')
     e.preventDefault()
   }
 

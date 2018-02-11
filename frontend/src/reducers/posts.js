@@ -1,7 +1,11 @@
 import {
   FETCH_POSTS_SUCCESS,
   ADD_POST_SUCCESS,
-} from '../actions'
+  EDIT_POST_SUCCESS,
+  DELETE_POST_SUCCESS,
+} from '../actions/posts'
+
+import { toIdDictionary } from '../utils'
 
 export const getVisiblePostIds = (activeFilterCategory, activeSortProperty, posts) => {
   return Object.keys(posts)
@@ -14,22 +18,33 @@ const posts = (posts = {}, action) => {
     case FETCH_POSTS_SUCCESS:
       let { fetchedPosts } = action
 
-      // Build the data portion of the posts object
-      fetchedPosts = fetchedPosts.reduce((posts, post) => {
-          posts[post.id] = post
-          return posts
-        }, {})
-
       return {
         ...posts,
-        ...fetchedPosts,
+        ...toIdDictionary(fetchedPosts),
       }
 
     case ADD_POST_SUCCESS:
-      const { post } = action
+      const { addedPost } = action
       return {
         ...posts,
-        [post.id]: post,
+        [addedPost.id]: addedPost,
+      }
+
+    case EDIT_POST_SUCCESS:
+      const { editedPost } = action
+      return {
+        ...posts,
+        [editedPost.id]: editedPost,
+      }
+
+    case DELETE_POST_SUCCESS:
+      const { deletedPostId } = action
+      return {
+        ...posts,
+        [deletedPostId]: {
+          ...posts[deletedPostId],
+          deleted: true,
+        }
       }
 
     default:

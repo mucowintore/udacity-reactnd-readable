@@ -56,8 +56,8 @@ export const votePost = (postId, option) =>
     body: JSON.stringify({ option })
   }).then(res => res.json())
 
-// updatePost is OK
-export const updatePost = (postId, title, body) =>
+// editPost is OK
+export const editPost = (postId, title, body) =>
   fetch(`${api}/posts/${postId}`, {
     method: 'PUT',
     headers: {
@@ -109,15 +109,15 @@ export const voteComment = (commentId, option) =>
     body: JSON.stringify({ option })
   }).then(res => res.json())
 
-// updateComment is OK
-export const updateComment = (commentId, timestamp, body) =>
+// editComment is OK
+export const editComment = (commentId, comment) =>
   fetch(`${api}/comments/${commentId}`, {
     method: 'PUT',
     headers: {
       ...headers,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ timestamp, body })
+    body: JSON.stringify(comment)
   }).then(res => res.json())
 
 // deleteComment is OK

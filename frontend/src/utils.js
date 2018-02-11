@@ -50,10 +50,18 @@ const redirectTo = (history, destination) => {
   history.push({ pathname: `/${destination}`})
 }
 
+const toIdDictionary = (objArray) => {
+  return objArray.reduce((result, elt) => {
+    result[elt.id] = elt
+    return result
+  }, {})
+}
+
 export {
   timeElapsed,
   trim,
   capitalize,
   generateId,
-  redirectTo
+  redirectTo,
+  toIdDictionary,
 }

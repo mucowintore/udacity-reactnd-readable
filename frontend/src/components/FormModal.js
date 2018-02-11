@@ -15,7 +15,7 @@ class FormModal extends React.Component {
     const { isOpen } = this.state
     return (
       <span>
-        {/* Render a placeholder button with its onClick property set to this.handleOpen */}
+        {/* Render a placeholder element with an added onClick property set to this.handleOpen */}
         {
           React.cloneElement(
             this.props.placeholder,
@@ -33,7 +33,7 @@ class FormModal extends React.Component {
               <Segment raised color={this.props.color}>
                 <Header as='h1' content={this.props.title} />
                 <Divider hidden />
-                {/* Render a form with its handleCloseModal property set to this.handleClose */}
+                {/* Render a form with an added handleCloseModal property set to this.handleClose */}
                 {
                   React.cloneElement(
                     this.props.form,

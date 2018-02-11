@@ -9,7 +9,6 @@ import { timeElapsed, trim } from '../utils'
 
 class DetailedPost extends React.Component {
   render() {
-    console.log('received props', this.props)
     const {
       title,
       timestamp,

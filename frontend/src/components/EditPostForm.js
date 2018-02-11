@@ -1,26 +1,35 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import { Form, Icon, Button } from 'semantic-ui-react'
 
-import { getDropdownCategories } from '../reducers/categories'
+import { editPost } from '../actions/posts'
 
 class EditPostForm extends React.Component {
   state = {
-    title: this.props.post.title,
-    author: this.props.post.author,
-    category: this.props.post.category,
-    body: this.props.post.body,
+    title: this.props.title,
+    body: this.props.body,
   }
 
-  /**
-   * TODO handleChange
-   * TODO handleSubmit
-   * TODO handleCancel
-   */
+  handleChange = (e, { name, value }) => this.setState({ [name]: value})
+
+  handleSubmit = (e) => {
+    const { id } = this.props
+    const { title, body } = this.state
+
+    this.props.editPost(id, title, body)
+    this.props.handleCloseModal()
+    e.preventDefault()
+  }
+
+  handleCancel = (e) => {
+    this.props.handleCloseModal()
+    e.preventDefault()
+  }
 
   render() {
-    const { title, author, body, category } = this.state
-    const { categories } = this.props.categories
+    const { title, body } = this.state
+    const { author, category } = this.props
 
     return (
       <Form>
@@ -34,20 +43,17 @@ class EditPostForm extends React.Component {
         <Form.Group widths='equal'>
           <Form.Input
             fluid
+            readOnly
             label='Author'
             name='author'
-            placeholder='Enter your name'
-            value={author}
-            onChange={this.handleChange}
+            placeholder={author}
           />
-          <Form.Select
+          <Form.Input
             fluid
+            readOnly
             label='Category'
             name='category'
-            placeholder='Pick a category'
-            options={categories}
-            value={category}
-            onChange={this.handleChange}
+            placeholder={category}
           />
         </Form.Group>
         <Form.TextArea
@@ -79,24 +85,8 @@ class EditPostForm extends React.Component {
   }
 }
 
-// TODO Fetch categories from the store
-// TODO Fetch the detailed post's info from the store
-function mapStateToProps({ categories, posts, ui }) {
-  const { title, author, body, category } = posts[ui.currentDetailedPostId]
-  return {
-    post: {
-      title,
-      author,
-      body,
-      category,
-    },
-    categories: getDropdownCategories(categories)
-  }
+function mapStateToProps({ categories, posts }, { match }) {
+  return posts[match.params.postId]
 }
 
-// TODO Fetch the editPost action creator
-// function mapDispatchToProps() {
-//
-// }
-
-export default connect(mapStateToProps)(EditPostForm)
+export default withRouter(connect(mapStateToProps, { editPost })(EditPostForm))
