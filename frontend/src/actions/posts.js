@@ -13,6 +13,8 @@ export const EDIT_POST_SUCCESS = 'EDIT_POST_SUCCESS'
 export const EDIT_POST_FAILURE = 'EDIT_POST_FAILURE'
 
 export const VOTE_POST = 'VOTE_POST'
+export const VOTE_POST_SUCCESS = 'VOTE_POST_SUCCESS'
+export const VOTE_POST_FAILURE = 'VOTE_POST_FAILURE'
 
 export const DELETE_POST = 'DELETE_POST'
 export const DELETE_POST_SUCCESS = 'DELETE_POST_SUCCESS'
@@ -66,7 +68,7 @@ export function editPost (postId, title, body) {
     )
   }
 }
-export function editPostSuccess(editedPost) {
+export function editPostSuccess (editedPost) {
   return {
     type: EDIT_POST_SUCCESS,
     editedPost,
@@ -82,9 +84,21 @@ export function editPostFailure (error) {
 export function votePost (postId, option) {
   return (dispatch) =>
     ReadableAPI.votePost(postId, option).then(
-      editedPost => dispatch(editPostSuccess(editedPost)),
-      error => dispatch(editPostFailure(error))
+      votedPost => dispatch(votePostSuccess(votedPost)),
+      error => dispatch(votePostFailure(error))
     )
+}
+export function votePostSuccess (votedPost) {
+  return {
+    type: VOTE_POST_SUCCESS,
+    votedPost,
+  }
+}
+export function votePostFailure (error) {
+  return {
+    type: VOTE_POST_FAILURE,
+    error
+  }
 }
 
 export function deletePost(postId) {

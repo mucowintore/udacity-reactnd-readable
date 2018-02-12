@@ -2,12 +2,13 @@ import {
   FETCH_POSTS_SUCCESS,
   ADD_POST_SUCCESS,
   EDIT_POST_SUCCESS,
+  VOTE_POST_SUCCESS,
   DELETE_POST_SUCCESS,
 } from '../actions/posts'
 
 import { toIdDictionary } from '../utils'
 
-export const getVisiblePostIds = (activeFilterCategory, activeSortProperty, posts) => {
+export const getVisiblePostsIds = (activeFilterCategory, activeSortProperty, posts) => {
   return Object.keys(posts)
     .filter(id => !posts[id].deleted)
     .filter(id => activeFilterCategory === 'all' || posts[id].category === activeFilterCategory)
@@ -36,6 +37,13 @@ const posts = (posts = {}, action) => {
       return {
         ...posts,
         [editedPost.id]: editedPost,
+      }
+
+    case VOTE_POST_SUCCESS:
+      const { votedPost } = action
+      return {
+        ...posts,
+        [votedPost.id]: votedPost,
       }
 
     case DELETE_POST_SUCCESS:
