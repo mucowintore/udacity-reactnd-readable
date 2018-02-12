@@ -21,7 +21,7 @@ export const DELETE_POST_FAILURE = 'DELETE_POST_FAILURE'
 export function fetchPosts () {
   return (dispatch) =>
     ReadableAPI.getPosts().then(
-      posts => dispatch(fetchPostsSuccess(posts)),
+      fetchedPosts => dispatch(fetchPostsSuccess(fetchedPosts)),
       error => dispatch(fetchPostsFailure(error))
     )
 }
@@ -41,7 +41,7 @@ export function fetchPostsFailure (error) {
 export function addPost (postData) {
   return (dispatch) =>
     ReadableAPI.addPost(postData).then(
-      post => dispatch(addPostSuccess(post)),
+      addedPost => dispatch(addPostSuccess(addedPost)),
       error => dispatch(addPostFailure(error))
     )
 }
@@ -61,7 +61,7 @@ export function addPostFailure (error) {
 export function editPost (postId, title, body) {
   return (dispatch) => {
     ReadableAPI.editPost(postId, title, body).then(
-      post => dispatch(editPostSuccess(post)),
+      editedPost => dispatch(editPostSuccess(editedPost)),
       error => dispatch(editPostFailure(error))
     )
   }
@@ -79,10 +79,10 @@ export function editPostFailure (error) {
   }
 }
 
-export function votePost (option) {
+export function votePost (postId, option) {
   return (dispatch) =>
-    ReadableAPI.votePost(option).then(
-      post => dispatch(editPostSuccess(post)),
+    ReadableAPI.votePost(postId, option).then(
+      editedPost => dispatch(editPostSuccess(editedPost)),
       error => dispatch(editPostFailure(error))
     )
 }
@@ -90,7 +90,7 @@ export function votePost (option) {
 export function deletePost(postId) {
   return (dispatch) =>
     ReadableAPI.deletePost(postId).then(
-      post => dispatch(deletePostSuccess(postId)),
+      success => dispatch(deletePostSuccess(postId)),
       error => dispatch(deletePostFailure(error))
     )
 }
