@@ -1,6 +1,7 @@
 import {
   SET_SORT_PROPERTY,
-} from '../actions'
+  RESET_SORT_PROPERTY,
+} from '../actions/ui'
 
 const initialUi = {
   activeSortProperty: 'timestamp',
@@ -11,8 +12,12 @@ const ui = (ui = initialUi, action) => {
     case SET_SORT_PROPERTY:
       const { newSortProperty } = action
       return {
-        ...ui,
         activeSortProperty: newSortProperty,
+      }
+
+    case RESET_SORT_PROPERTY:
+      return {
+        activeSortProperty: 'timestamp'
       }
 
     default:

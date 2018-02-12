@@ -1,9 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import { Form, Icon, Button } from 'semantic-ui-react'
 
-import { capitalize, generateId, redirectTo } from '../utils'
+import { capitalize, generateId } from '../utils'
 import { addPost } from '../actions/posts'
+import { resetSortProperty } from '../actions/ui'
 
 
 class AddPostForm extends React.Component {
@@ -25,7 +27,11 @@ class AddPostForm extends React.Component {
 
     this.props.addPost(post)
     this.props.handleCloseModal()
-    redirectTo('/')
+
+    // reset filter and sort parameters
+    this.props.history.push('/')
+    this.props.resetSortProperty()
+
     e.preventDefault()
   }
 
@@ -92,11 +98,13 @@ class AddPostForm extends React.Component {
   }
 }
 
-function mapStateToProps ({ categories }) {
+function mapStateToProps ({ categories }, { match, history, location }) {
+  console.log('match', match, 'history', history, 'location', location)
   return {
-    categories: categories.map(({ name }) => ({ key: name, text: capitalize(name), value: name }))
+    categories: categories.map(({ name }) => ({ key: name, text: capitalize(name), value: name })),
+    history,
   }
 }
 
 
-export default connect(mapStateToProps, { addPost })(AddPostForm)
+export default withRouter(connect(mapStateToProps, { addPost, resetSortProperty })(AddPostForm))
