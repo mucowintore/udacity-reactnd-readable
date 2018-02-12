@@ -86,7 +86,7 @@ export function editCommentFailure (error) {
 export function voteComment (commentId, option) {
   return (dispatch) => {
     ReadableAPI.voteComment(commentId, option).then(
-      votedComment => dispatch(editCommentSuccess(votedComment)),
+      votedComment => dispatch(voteCommentSuccess(votedComment)),
       error => dispatch(voteCommentFailure(error))
     )
   }

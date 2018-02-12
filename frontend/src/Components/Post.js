@@ -1,45 +1,40 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Card, Label, Icon } from 'semantic-ui-react'
-// import CommentList from './CommentList'
 import { timeElapsed, trim } from '../utils.js'
 
 
-const Post = (props) => (
-    <Card fluid raised as={Link} to={`/${props.category}/${props.id}`}>
+const Post = (props) => {
+  const {
+    id,
+    timestamp,
+    title,
+    author,
+    body,
+    category,
+    commentCount,
+    voteScore,
+  } = props
+
+  return (
+    <Card fluid raised as={Link} to={`/${category}/${id}`}>
       <Card.Content>
-        <Card.Header>{props.title}</Card.Header>
-        <Card.Meta>created {timeElapsed(props.timestamp)} by <b>{props.author}</b> </Card.Meta>
-        <Card.Description>{trim(props.body)}</Card.Description>
+        <Card.Header>{title}</Card.Header>
+        <Card.Meta>created {timeElapsed(timestamp)} by <b>{author}</b> </Card.Meta>
+        <Card.Description>{trim(body)}</Card.Description>
       </Card.Content>
       <Card.Content extra>
-        <Label tag color='teal'>{props.category}</Label>
+        <Label tag color='teal'>{category}</Label>
         <Label color='orange'>
-          <Icon name='comments'/> {props.commentCount}
+          <Icon name='comments'/> {commentCount}
         </Label>
         <Label color='yellow'>
-          <Icon name='star'/> {props.voteScore}
+          <Icon name='star'/> {voteScore}
         </Label>
       </Card.Content>
-      {/* <Card.Content extra>
-        {props.commentCount &&
-          <CommentList parentId={props.id} />
-        }
-      </Card.Content> */}
     </Card>
   )
-
-Post.propTypes = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  timestamp: PropTypes.number.isRequired,
-  author: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
-  voteScore: PropTypes.number.isRequired,
-  commentCount: PropTypes.number.isRequired,
 }
 
 function mapStateToProps({ posts }, { id }) {

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 
 import Post from './Post'
-import { getVisiblePostIds } from '../reducers/posts'
+import { getVisiblePostsIds } from '../reducers/posts'
 
 
 const PostList = ({ postIds }) => (
@@ -16,7 +16,7 @@ const PostList = ({ postIds }) => (
 
 function mapStateToProps({ posts, ui }, { match }) {
   return {
-    postIds: getVisiblePostIds(match.params.category || 'all', ui.activeSortProperty, posts),
+    postIds: getVisiblePostsIds(match.params.category || 'all', ui.activeSortProperty, posts),
   }
 }
 
