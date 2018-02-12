@@ -9,6 +9,7 @@ import { toIdDictionary } from '../utils'
 
 export const getVisiblePostIds = (activeFilterCategory, activeSortProperty, posts) => {
   return Object.keys(posts)
+    .filter(id => !posts[id].deleted)
     .filter(id => activeFilterCategory === 'all' || posts[id].category === activeFilterCategory)
     .sort((idA, idB) => posts[idB][activeSortProperty] - posts[idA][activeSortProperty])
 }

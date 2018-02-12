@@ -6,8 +6,13 @@ import { Card, Label, Icon, Grid } from 'semantic-ui-react'
 import FormModal from './FormModal'
 import EditPostForm from './EditPostForm'
 import { timeElapsed, trim } from '../utils'
+import { deletePost } from '../actions/posts'
 
 class DetailedPost extends React.Component {
+  handleDelete = (e) => {
+    this.props.deletePost(this.props.post.id)
+    this.props.history.push('/')
+  }
   render() {
     const {
       title,
@@ -37,7 +42,7 @@ class DetailedPost extends React.Component {
                       <Icon link name='pencil' color='green'/>
                     }
                   />
-                  <Icon link name='trash' color='red'/>
+                  <Icon link name='trash' color='red' onClick={this.handleDelete}/>
                 </Grid.Column>
               </Grid>
             </Card.Header>
@@ -60,10 +65,11 @@ class DetailedPost extends React.Component {
   }
 }
 
-function mapStateToProps({ posts }, { match }) {
+function mapStateToProps({ posts }, { match, history }) {
   return {
-    post: posts[match.params.postId]
+    post: posts[match.params.postId],
+    history,
   }
 }
 
-export default withRouter(connect(mapStateToProps)(DetailedPost))
+export default withRouter(connect(mapStateToProps, { deletePost })(DetailedPost))

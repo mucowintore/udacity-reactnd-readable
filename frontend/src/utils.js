@@ -46,10 +46,6 @@ const generateId = () => {
   return uuid.v4()
 }
 
-const redirectTo = (history, destination) => {
-  history.push({ pathname: `/${destination}`})
-}
-
 const toIdDictionary = (objArray) => {
   return objArray.reduce((result, elt) => {
     result[elt.id] = elt
@@ -62,6 +58,5 @@ export {
   trim,
   capitalize,
   generateId,
-  redirectTo,
   toIdDictionary,
 }

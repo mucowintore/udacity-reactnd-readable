@@ -3,12 +3,11 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { Menu, Dropdown } from 'semantic-ui-react'
 import { getDropdownCategories } from '../reducers/categories'
-import { redirectTo } from '../utils'
 
 class FilterSubMenu extends React.Component {
   handleChange = (e, { value }) => {
     if(value !== this.props.activeFilterCategory){
-      redirectTo(this.props.history, value)
+      this.props.history.push(`/${value}`)
     }
   }
 
