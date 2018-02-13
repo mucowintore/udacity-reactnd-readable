@@ -1,29 +1,70 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import { Form, Icon, Button } from 'semantic-ui-react'
 
+import { generateId } from '../utils'
+import { addComment } from '../actions/comments'
 
-const AddCommentForm = () => (
-  <Form>
-    <Form.Input 
-      fluid
-      label='Author'
-      name='author'
-      placeholder='Enter your name'
-    />
-    <Form.TextArea
-      label='Content'
-      name='body'
-      placeholder='Type here...'
-    />
-    <Form.Group>
-          <Form.Button icon color='green'>
+
+class AddCommentForm extends React.Component {
+  state = {
+    author: '',
+    body: '',
+  }
+
+  handleChange = (e, { name, value }) => this.setState({ [name]: value })
+
+  handleSubmit = (e) => {
+    const comment = {
+      id: generateId(),
+      timestamp: Date.now(),
+      parentId: this.props.match.params.postId,
+      ...this.state,
+    }
+
+    this.props.addComment(comment)
+    this.props.handleCloseModal()
+
+    e.preventDefault()
+  }
+
+  handleCancel = (e) => {
+    this.props.handleCloseModal()
+    e.preventDefault()
+  }
+
+  render() {
+    const { author, body } = this.state
+
+    return (
+      <Form>
+        <Form.Input
+          fluid
+          label='Author'
+          name='author'
+          placeholder='Enter your name'
+          value={author}
+          onChange={this.handleChange}
+        />
+        <Form.TextArea
+          label='Content'
+          name='body'
+          placeholder='Type here...'
+          value={body}
+          onChange={this.handleChange}
+        />
+        <Form.Group>
+          <Form.Button icon color='green' onClick={this.handleSubmit}>
             <Icon name='checkmark' /> Submit
           </Form.Button>
-          <Button basic compact color='red'>
+          <Button basic compact color='red' onClick={this.handleCancel}>
             <Icon name='remove'/> Cancel
           </Button>
-    </Form.Group>
-  </Form>
-)
+        </Form.Group>
+      </Form>
+    )
+  }
+}
 
-export default AddCommentForm
+export default withRouter(connect(null, { addComment })(AddCommentForm))
