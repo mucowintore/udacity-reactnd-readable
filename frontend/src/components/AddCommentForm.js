@@ -4,7 +4,10 @@ import { withRouter } from 'react-router'
 import { Form, Icon, Button } from 'semantic-ui-react'
 
 import { generateId } from '../utils'
-import { addComment } from '../actions/comments'
+import {
+  addComment,
+  incrementCommentCount,
+} from '../actions'
 
 
 class AddCommentForm extends React.Component {
@@ -16,14 +19,16 @@ class AddCommentForm extends React.Component {
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
   handleSubmit = (e) => {
+    const parentId = this.props.match.params.postId
     const comment = {
       id: generateId(),
       timestamp: Date.now(),
-      parentId: this.props.match.params.postId,
+      parentId,
       ...this.state,
     }
 
     this.props.addComment(comment)
+    this.props.incrementCommentCount(parentId)
     this.props.handleCloseModal()
 
     e.preventDefault()
@@ -67,4 +72,4 @@ class AddCommentForm extends React.Component {
   }
 }
 
-export default withRouter(connect(null, { addComment })(AddCommentForm))
+export default withRouter(connect(null, { addComment, incrementCommentCount })(AddCommentForm))

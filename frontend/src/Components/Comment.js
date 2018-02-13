@@ -1,11 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import { Comment as CommentUI, Icon } from 'semantic-ui-react'
 
 import FormModal from './FormModal'
 import EditCommentForm from './EditCommentForm'
 import { timeElapsed } from '../utils'
-import { voteComment } from '../actions/comments'
+import {
+  voteComment,
+  deleteComment,
+  decrementCommentCount,
+} from '../actions'
 
 
 
@@ -16,6 +21,12 @@ class Comment extends React.Component {
 
   handleDownVote = () => {
     this.props.voteComment(this.props.id, 'downVote')
+  }
+
+  handleDelete = () => {
+    const parentId = this.props.match.params.postId
+    this.props.deleteComment(this.props.id)
+    this.props.decrementCommentCount(parentId)
   }
 
   render() {
@@ -46,7 +57,7 @@ class Comment extends React.Component {
                 <Icon link name='pencil' color='green' />
               }
             />
-            <Icon link name='trash outline' color='red' />
+            <Icon link name='trash outline' color='red' onClick={this.handleDelete}/>
           </CommentUI.Metadata>
           <CommentUI.Text>{body}</CommentUI.Text>
         </CommentUI.Content>
@@ -60,4 +71,7 @@ function mapStateToProps({ comments }, { id }) {
 }
 
 
-export default connect(mapStateToProps, { voteComment })(Comment)
+export default withRouter(connect(
+  mapStateToProps,
+  { voteComment, deleteComment, decrementCommentCount }
+)(Comment))

@@ -12,6 +12,9 @@ export const EDIT_POST = 'EDIT_POST'
 export const EDIT_POST_SUCCESS = 'EDIT_POST_SUCCESS'
 export const EDIT_POST_FAILURE = 'EDIT_POST_FAILURE'
 
+export const INCREMENT_COMMENT_COUNT = 'INCREMENT_COMMENT_COUNT'
+export const DECREMENT_COMMENT_COUNT = 'DECREMENT_COMMENT_COUNT'
+
 export const VOTE_POST = 'VOTE_POST'
 export const VOTE_POST_SUCCESS = 'VOTE_POST_SUCCESS'
 export const VOTE_POST_FAILURE = 'VOTE_POST_FAILURE'
@@ -118,5 +121,18 @@ export function deletePostFailure (error) {
   return {
     type: DELETE_POST_FAILURE,
     error,
+  }
+}
+
+export function incrementCommentCount (postId) {
+  return {
+    type: INCREMENT_COMMENT_COUNT,
+    postId,
+  }
+}
+export function decrementCommentCount (postId) {
+  return {
+    type: DECREMENT_COMMENT_COUNT,
+    postId,
   }
 }

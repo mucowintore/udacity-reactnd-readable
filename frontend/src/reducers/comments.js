@@ -15,35 +15,39 @@ export const getCommentIdsByParent = (parentId, comments) => {
 
 const comments = (comments = {}, action) => {
   switch(action.type) {
-    case FETCH_COMMENTS_SUCCESS:
+    case FETCH_COMMENTS_SUCCESS: {
       const { fetchedComments, parentId } = action
       return {
         ...comments,
         [parentId]: toIdDictionary(fetchedComments)
       }
+    }
 
-    case ADD_COMMENT_SUCCESS:
+    case ADD_COMMENT_SUCCESS: {
       const { addedComment } = action
       return {
         ...comments,
         [addedComment.id]: addedComment,
       }
+    }
 
-    case EDIT_COMMENT_SUCCESS:
+    case EDIT_COMMENT_SUCCESS: {
       const { editedComment } = action
       return {
         ...comments,
         [editedComment.id]: editedComment,
       }
+    }
 
-    case VOTE_COMMENT_SUCCESS:
+    case VOTE_COMMENT_SUCCESS: {
       const { votedComment } = action
       return {
         ...comments,
         [votedComment.id]: votedComment,
       }
+    }
 
-    case DELETE_COMMENT_SUCCESS:
+    case DELETE_COMMENT_SUCCESS: {
       const { deletedCommentId } = action
       return {
         ...comments,
@@ -52,6 +56,7 @@ const comments = (comments = {}, action) => {
           deleted: true,
         }
       }
+    }  
 
     default:
       return comments
