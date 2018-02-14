@@ -1,7 +1,5 @@
 import React from 'react'
 import { Dimmer, Grid, Header, Divider, Segment } from 'semantic-ui-react'
-import PropTypes from 'prop-types'
-
 
 class FormModal extends React.Component {
   state = {
