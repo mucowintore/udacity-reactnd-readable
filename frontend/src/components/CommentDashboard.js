@@ -5,7 +5,7 @@ import { Header, Icon, Segment, Button } from 'semantic-ui-react'
 
 import CommentList from './CommentList'
 import FormModal from './FormModal'
-import AddCommentForm from './AddCommentForm'
+import CommentAddForm from './CommentAddForm'
 import { getCommentIdsByParent } from '../reducers/comments'
 
 class CommentDashboard extends React.Component {
@@ -21,7 +21,7 @@ class CommentDashboard extends React.Component {
         <FormModal
           title='Add Comment'
           color='green'
-          form={<AddCommentForm/>}
+          form={<CommentAddForm/>}
           placeholder={
               <Button icon compact color='green'>
                 <Icon name='add' /> Add Comment

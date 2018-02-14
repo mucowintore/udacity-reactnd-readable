@@ -7,7 +7,7 @@ import { generateId } from '../utils'
 import { addComment } from '../actions/comments'
 import { incrementCommentCount } from '../actions/posts'
 
-class AddCommentForm extends React.Component {
+class CommentAddForm extends React.Component {
   state = {
     author: '',
     body: '',
@@ -69,4 +69,4 @@ class AddCommentForm extends React.Component {
   }
 }
 
-export default withRouter(connect(null, { addComment, incrementCommentCount })(AddCommentForm))
+export default withRouter(connect(null, { addComment, incrementCommentCount })(CommentAddForm))
