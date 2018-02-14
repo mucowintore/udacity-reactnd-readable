@@ -4,7 +4,7 @@ import { withRouter } from 'react-router'
 import { Card, Label, Icon, Grid } from 'semantic-ui-react'
 
 import FormModal from './FormModal'
-import EditPostForm from './EditPostForm'
+import PostEditForm from './PostEditForm'
 import { timeElapsed, trim } from '../utils'
 import { deletePost, votePost } from '../actions/posts'
 
@@ -45,7 +45,7 @@ class DetailedPost extends React.Component {
                   <FormModal
                     title='Edit Post'
                     color='green'
-                    form={<EditPostForm/>}
+                    form={<PostEditForm/>}
                     placeholder={
                       <Icon link name='pencil' color='green'/>
                     }

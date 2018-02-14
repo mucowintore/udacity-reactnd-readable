@@ -5,7 +5,7 @@ import { Form, Icon, Button } from 'semantic-ui-react'
 
 import { editPost } from '../actions/posts'
 
-class EditPostForm extends React.Component {
+class PostEditForm extends React.Component {
   state = {
     title: this.props.title,
     body: this.props.body,
@@ -85,8 +85,8 @@ class EditPostForm extends React.Component {
   }
 }
 
-function mapStateToProps({ categories, posts }, { match }) {
+function mapStateToProps({ posts }, { match }) {
   return posts[match.params.postId]
 }
 
-export default withRouter(connect(mapStateToProps, { editPost })(EditPostForm))
+export default withRouter(connect(mapStateToProps, { editPost })(PostEditForm))
