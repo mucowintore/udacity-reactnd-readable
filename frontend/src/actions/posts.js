@@ -1,9 +1,5 @@
 import * as ReadableAPI from '../ReadableAPI'
 
-export const FETCH_POSTS = 'FETCH_POSTS'
-export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS'
-export const FETCH_POSTS_FAILURE = 'FETCH_POSTS_FAILURE'
-
 export const ADD_POST = 'ADD_POST'
 export const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS'
 export const ADD_POST_FAILURE = 'ADD_POST_FAILURE'
@@ -22,26 +18,6 @@ export const VOTE_POST_FAILURE = 'VOTE_POST_FAILURE'
 export const DELETE_POST = 'DELETE_POST'
 export const DELETE_POST_SUCCESS = 'DELETE_POST_SUCCESS'
 export const DELETE_POST_FAILURE = 'DELETE_POST_FAILURE'
-
-export function fetchPosts () {
-  return (dispatch) =>
-    ReadableAPI.getPosts().then(
-      fetchedPosts => dispatch(fetchPostsSuccess(fetchedPosts)),
-      error => dispatch(fetchPostsFailure(error))
-    )
-}
-export function fetchPostsSuccess (fetchedPosts) {
-  return {
-    type: FETCH_POSTS_SUCCESS,
-    fetchedPosts,
-  }
-}
-export function fetchPostsFailure (error) {
-  return {
-    type: FETCH_POSTS_FAILURE,
-    error,
-  }
-}
 
 export function addPost (postData) {
   return (dispatch) =>

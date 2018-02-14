@@ -1,5 +1,4 @@
 import {
-  FETCH_POSTS_SUCCESS,
   ADD_POST_SUCCESS,
   EDIT_POST_SUCCESS,
   VOTE_POST_SUCCESS,
@@ -7,8 +6,6 @@ import {
   INCREMENT_COMMENT_COUNT,
   DECREMENT_COMMENT_COUNT,
 } from '../actions/posts'
-
-import { toIdDictionary } from '../utils'
 
 export const getVisiblePostsIds = (activeFilterCategory, activeSortProperty, posts) => {
   return Object.keys(posts)
@@ -19,15 +16,6 @@ export const getVisiblePostsIds = (activeFilterCategory, activeSortProperty, pos
 
 const posts = (posts = {}, action) => {
   switch(action.type) {
-    case FETCH_POSTS_SUCCESS: {
-      const { fetchedPosts } = action
-
-      return {
-        ...posts,
-        ...toIdDictionary(fetchedPosts),
-      }
-    }
-
     case ADD_POST_SUCCESS: {
       const { addedPost } = action
       return {
@@ -35,7 +23,6 @@ const posts = (posts = {}, action) => {
         [addedPost.id]: addedPost,
       }
     }
-
     case EDIT_POST_SUCCESS: {
       const { editedPost } = action
       return {
@@ -43,7 +30,6 @@ const posts = (posts = {}, action) => {
         [editedPost.id]: editedPost,
       }
     }
-
     case VOTE_POST_SUCCESS: {
       const { votedPost } = action
       return {
@@ -51,7 +37,6 @@ const posts = (posts = {}, action) => {
         [votedPost.id]: votedPost,
       }
     }
-
     case DELETE_POST_SUCCESS: {
       const { deletedPostId } = action
       return {
@@ -62,7 +47,6 @@ const posts = (posts = {}, action) => {
         }
       }
     }
-
     case INCREMENT_COMMENT_COUNT: {
       const { postId } = action
       return {
@@ -73,7 +57,6 @@ const posts = (posts = {}, action) => {
         }
       }
     }
-
     case DECREMENT_COMMENT_COUNT: {
       const { postId } = action
       return {
@@ -84,7 +67,6 @@ const posts = (posts = {}, action) => {
         }
       }
     }
-
     default:
       return posts
   }
