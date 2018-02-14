@@ -5,7 +5,7 @@ import { Card, Label, Icon, Grid } from 'semantic-ui-react'
 
 import FormModal from './FormModal'
 import PostEditForm from './PostEditForm'
-import { timeElapsed, trim } from '../utils'
+import { timeElapsed } from '../utils'
 import { deletePost, votePost } from '../actions/posts'
 
 class PostDetail extends React.Component {
@@ -32,6 +32,12 @@ class PostDetail extends React.Component {
       voteScore,
     } = this.props.post
 
+    // A CSS style that prevents the post body text in Card.Description below
+    // from overflowing on a single line
+    const wordWrapStyle = {
+      wordWrap: 'break-word',
+    }
+
     return (
       <div>
         <Card fluid>
@@ -54,8 +60,12 @@ class PostDetail extends React.Component {
                 </Grid.Column>
               </Grid>
             </Card.Header>
-            <Card.Meta>created {timeElapsed(timestamp)} by <b>{author}</b></Card.Meta>
-            <Card.Description>{trim(body)}</Card.Description>
+            <Card.Meta>
+              created {timeElapsed(timestamp)} by <b>{author}</b>
+            </Card.Meta>
+            <Card.Description style={wordWrapStyle}>
+              {body}
+            </Card.Description>
           </Card.Content>
           <Card.Content extra>
             <Icon link name='angle down' size='large' onClick={this.handleDownVote}/>
