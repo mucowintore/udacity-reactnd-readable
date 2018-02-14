@@ -4,12 +4,10 @@ import { withRouter } from 'react-router'
 import { Form, Icon, Button } from 'semantic-ui-react'
 
 import { generateId } from '../utils'
-import {
-  addComment,
-  incrementCommentCount,
-} from '../actions'
+import { addComment } from '../actions/comments'
+import { incrementCommentCount } from '../actions/posts'
 
-
+// TODO Inspect, improve and clean up AddCommentForm
 class AddCommentForm extends React.Component {
   state = {
     author: '',

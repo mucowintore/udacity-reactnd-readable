@@ -1,6 +1,6 @@
 import {
   FETCH_CATEGORIES_SUCCESS,
-} from '../actions'
+} from '../actions/categories'
 
 import { capitalize } from '../utils'
 

@@ -6,13 +6,8 @@ import { Comment as CommentUI, Icon } from 'semantic-ui-react'
 import FormModal from './FormModal'
 import EditCommentForm from './EditCommentForm'
 import { timeElapsed } from '../utils'
-import {
-  voteComment,
-  deleteComment,
-  decrementCommentCount,
-} from '../actions'
-
-
+import { voteComment, deleteComment } from '../actions/comments'
+import { decrementCommentCount } from '../actions/posts'
 
 class Comment extends React.Component {
   handleUpVote = () => {

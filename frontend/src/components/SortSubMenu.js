@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Menu } from 'semantic-ui-react'
-import { setSortProperty } from '../actions'
+import { setSortProperty } from '../actions/ui'
 
 class SortSubMenu extends React.Component {
 
