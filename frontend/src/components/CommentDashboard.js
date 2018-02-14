@@ -1,10 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { Header, Icon, Segment } from 'semantic-ui-react'
+import { Header, Icon, Segment, Button } from 'semantic-ui-react'
 
 import CommentList from './CommentList'
-import AddCommentModal from './AddCommentModal'
+import FormModal from './FormModal'
+import AddCommentForm from './AddCommentForm'
 import { getCommentIdsByParent } from '../reducers/comments'
 
 class CommentDashboard extends React.Component {
@@ -17,7 +18,16 @@ class CommentDashboard extends React.Component {
           <Icon name='comments' />Comments
         </Header>
         <CommentList commentIds={commentIds}/>
-        <AddCommentModal />
+        <FormModal
+          title='Add Comment'
+          color='green'
+          form={<AddCommentForm/>}
+          placeholder={
+              <Button icon compact color='green'>
+                <Icon name='add' /> Add Comment
+              </Button>
+          }
+        />
       </Segment>
     )
   }
