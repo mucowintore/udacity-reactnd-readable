@@ -1,11 +1,12 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
-import { Container, Divider } from 'semantic-ui-react'
+import { Route, Link } from 'react-router-dom'
+import { Container, Divider, Icon } from 'semantic-ui-react'
 
 import Banner from './Banner'
 import FilterAndSortMenu from './FilterAndSortMenu'
 import PostDashboard from './PostDashboard'
-import PostDetailView from './PostDetailView'
+import PostDetail from './PostDetail'
+import CommentDashboard from './CommentDashboard'
 
 const App = () => (
   <Container>
@@ -18,7 +19,15 @@ const App = () => (
       </div>
     )}/>
     <Route path='/:category/:postId' render={() => (
-      <PostDetailView />
+      <div>
+        <Link to='/'>
+          <Icon name='angle left' size='big' color='black'/>
+        </Link>
+        <Divider hidden />
+        <PostDetail />
+        <Divider hidden />
+        <CommentDashboard />
+      </div>
     )}/>
   </Container>
 )
