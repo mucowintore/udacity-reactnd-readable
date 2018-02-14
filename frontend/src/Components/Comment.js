@@ -4,7 +4,7 @@ import { withRouter } from 'react-router'
 import { Comment as CommentUI, Icon } from 'semantic-ui-react'
 
 import FormModal from './FormModal'
-import EditCommentForm from './EditCommentForm'
+import CommentEditForm from './CommentEditForm'
 import { timeElapsed } from '../utils'
 import { voteComment, deleteComment } from '../actions/comments'
 import { decrementCommentCount } from '../actions/posts'
@@ -48,7 +48,7 @@ class Comment extends React.Component {
             <FormModal
               title='Edit Comment'
               color='green'
-              form={<EditCommentForm commentId={id}/>}
+              form={<CommentEditForm commentId={id}/>}
               placeholder={
                 <Icon link name='pencil' color='green' />
               }

@@ -4,7 +4,7 @@ import { Form, Icon, Button } from 'semantic-ui-react'
 
 import { editComment } from '../actions/comments'
 
-class EditCommentForm extends React.Component {
+class CommentEditForm extends React.Component {
   state = {
     author: this.props.author,
     body: this.props.body,
@@ -60,4 +60,4 @@ function mapStateToProps ({ comments }, { commentId }) {
   return comments[commentId]
 }
 
-export default connect(mapStateToProps, { editComment })(EditCommentForm)
+export default connect(mapStateToProps, { editComment })(CommentEditForm)
