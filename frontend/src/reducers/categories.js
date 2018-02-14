@@ -4,7 +4,7 @@ import {
 
 import { capitalize } from '../utils'
 
-// Returns a categories array in a format suitable for a dropdown
+// Returns a categories array in a format suitable for the FilterSubMenu dropdown
 export function getDropdownCategories (categories) {
   return  [
             {

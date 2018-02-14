@@ -18,10 +18,9 @@ class FilterSubMenu extends React.Component {
         <Menu.Item>
           <Dropdown
             selection
-            onChange={this.handleChange}
             options={this.props.categories}
-            placeholder='Pick a Category'
             value={this.props.activeFilterCategory}
+            onChange={this.handleChange}
           />
         </Menu.Item>
       </Menu.Menu>
@@ -30,7 +29,7 @@ class FilterSubMenu extends React.Component {
 }
 
 
-function mapStateToProps({ ui, categories }, { history, match }) {
+function mapStateToProps({ categories }, { history, match }) {
   return {
     categories: getDropdownCategories(categories),
     activeFilterCategory: match.params.category || 'all',
