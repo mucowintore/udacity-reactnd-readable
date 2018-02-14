@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import uuid from 'js-uuid'
 
-// TODO DRY the implementation
 const timeElapsed = (timestamp) => {
   const MILLISECONDS_IN_MINUTE = 60 * 1000
   const MILLISECONDS_IN_HOUR = 60 * MILLISECONDS_IN_MINUTE
@@ -46,17 +45,9 @@ const generateId = () => {
   return uuid.v4()
 }
 
-const toIdDictionary = (objArray) => {
-  return objArray.reduce((result, elt) => {
-    result[elt.id] = elt
-    return result
-  }, {})
-}
-
 export {
   timeElapsed,
   trim,
   capitalize,
   generateId,
-  toIdDictionary,
 }
