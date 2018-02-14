@@ -8,7 +8,7 @@ import PostEditForm from './PostEditForm'
 import { timeElapsed, trim } from '../utils'
 import { deletePost, votePost } from '../actions/posts'
 
-class DetailedPost extends React.Component {
+class PostDetail extends React.Component {
   handleUpVote = () => {
     this.props.votePost(this.props.post.id, 'upVote')
   }
@@ -81,4 +81,4 @@ function mapStateToProps({ posts }, { match, history }) {
   }
 }
 
-export default withRouter(connect(mapStateToProps, { deletePost, votePost })(DetailedPost))
+export default withRouter(connect(mapStateToProps, { deletePost, votePost })(PostDetail))

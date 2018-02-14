@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Divider, Icon } from 'semantic-ui-react'
 
-import DetailedPost from './DetailedPost'
+import PostDetail from './PostDetail'
 import CommentDashboard from './CommentDashboard'
 
 
@@ -12,7 +12,7 @@ const PostDetailView = () => (
       <Icon name='angle left' size='big' color='black'/>
     </Link>
     <Divider hidden />
-    <DetailedPost />
+    <PostDetail />
     <Divider hidden />
     <CommentDashboard />
   </div>
