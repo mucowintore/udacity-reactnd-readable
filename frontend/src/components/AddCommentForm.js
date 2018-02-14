@@ -7,7 +7,6 @@ import { generateId } from '../utils'
 import { addComment } from '../actions/comments'
 import { incrementCommentCount } from '../actions/posts'
 
-// TODO Inspect, improve and clean up AddCommentForm
 class AddCommentForm extends React.Component {
   state = {
     author: '',
