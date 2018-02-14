@@ -5,7 +5,7 @@ import { Container, Divider } from 'semantic-ui-react'
 import Banner from './Banner'
 import FilterAndSortMenu from './FilterAndSortMenu'
 import PostDashboard from './PostDashboard'
-import PostDetail from './PostDetail'
+import PostDetailView from './PostDetailView'
 
 const App = () => (
   <Container>
@@ -18,7 +18,7 @@ const App = () => (
       </div>
     )}/>
     <Route path='/:category/:postId' render={() => (
-      <PostDetail />
+      <PostDetailView />
     )}/>
   </Container>
 )

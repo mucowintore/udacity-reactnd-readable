@@ -6,7 +6,7 @@ import DetailedPost from './DetailedPost'
 import CommentDashboard from './CommentDashboard'
 
 
-const PostDetail = () => (
+const PostDetailView = () => (
   <div>
     <Link to='/'>
       <Icon name='angle left' size='big' color='black'/>
@@ -18,4 +18,4 @@ const PostDetail = () => (
   </div>
 )
 
-export default PostDetail
+export default PostDetailView
