@@ -34,7 +34,8 @@ class Comment extends React.Component {
       author,
       timestamp,
       body,
-      voteScore
+      voteScore,
+      id,
     } = this.props
 
     return (
@@ -52,7 +53,7 @@ class Comment extends React.Component {
             <FormModal
               title='Edit Comment'
               color='green'
-              form={<EditCommentForm/>}
+              form={<EditCommentForm commentId={id}/>}
               placeholder={
                 <Icon link name='pencil' color='green' />
               }
