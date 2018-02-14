@@ -8,7 +8,7 @@ import { addPost } from '../actions/posts'
 import { resetSortProperty } from '../actions/ui'
 
 
-class AddPostForm extends React.Component {
+class PostAddForm extends React.Component {
   state = {
     title: '',
     author: '',
@@ -106,4 +106,4 @@ function mapStateToProps ({ categories }, { history }) {
   }
 }
 
-export default withRouter(connect(mapStateToProps, { addPost, resetSortProperty })(AddPostForm))
+export default withRouter(connect(mapStateToProps, { addPost, resetSortProperty })(PostAddForm))
