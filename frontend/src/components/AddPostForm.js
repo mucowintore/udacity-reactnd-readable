@@ -42,6 +42,7 @@ class AddPostForm extends React.Component {
 
   render() {
     const { title, author, body } = this.state
+    const { categories } = this.props
     return (
       <Form>
         <Form.Input
@@ -65,7 +66,7 @@ class AddPostForm extends React.Component {
             label='Category'
             name='category'
             placeholder='Pick a category'
-            options={this.props.categories}
+            options={categories}
             onChange={this.handleChange}
           />
         </Form.Group>
@@ -98,13 +99,11 @@ class AddPostForm extends React.Component {
   }
 }
 
-function mapStateToProps ({ categories }, { match, history, location }) {
-  console.log('match', match, 'history', history, 'location', location)
+function mapStateToProps ({ categories }, { history }) {
   return {
     categories: categories.map(({ name }) => ({ key: name, text: capitalize(name), value: name })),
     history,
   }
 }
-
 
 export default withRouter(connect(mapStateToProps, { addPost, resetSortProperty })(AddPostForm))
