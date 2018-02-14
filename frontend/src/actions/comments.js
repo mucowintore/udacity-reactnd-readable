@@ -1,9 +1,5 @@
 import * as ReadableAPI from '../ReadableAPI'
 
-export const FETCH_COMMENTS = 'FETCH_COMMENTS'
-export const FETCH_COMMENTS_SUCCESS = 'FETCH_COMMENTS_SUCCESS'
-export const FETCH_COMMENTS_FAILURE = 'FETCH_COMMENTS_FAILURE'
-
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS'
 export const ADD_COMMENT_FAILURE = 'ADD_COMMENT_FAILURE'
@@ -19,27 +15,6 @@ export const VOTE_COMMENT_SUCCESS = 'VOTE_COMMENT_SUCCESS'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const DELETE_COMMENT_SUCCESS = 'DELETE_COMMENT_SUCCESS'
 export const DELETE_COMMENT_FAILURE = 'DELETE_COMMENT_FAILURE'
-
-export function fetchComments (parentId) {
-  return (dispatch) => {
-    ReadableAPI.getComments(parentId).then(
-      comments => dispatch(fetchCommentsSuccess(comments)),
-      error => dispatch(fetchCommentsFailure(error))
-    )
-  }
-}
-export function fetchCommentsSuccess (fetchedComments) {
-  return {
-    type: FETCH_COMMENTS_SUCCESS,
-    fetchedComments,
-  }
-}
-export function fetchCommentsFailure (error) {
-  return {
-    type: FETCH_COMMENTS_FAILURE,
-    error,
-  }
-}
 
 export function addComment (commentData) {
   return (dispatch) => {

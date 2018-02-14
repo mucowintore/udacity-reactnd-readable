@@ -1,12 +1,10 @@
 import {
-  FETCH_COMMENTS_SUCCESS,
   ADD_COMMENT_SUCCESS,
   EDIT_COMMENT_SUCCESS,
   VOTE_COMMENT_SUCCESS,
   DELETE_COMMENT_SUCCESS,
 } from '../actions/comments'
 
-import { toIdDictionary } from '../utils'
 
 export const getCommentIdsByParent = (parentId, comments) => {
   return Object.keys(comments)
@@ -15,14 +13,6 @@ export const getCommentIdsByParent = (parentId, comments) => {
 
 const comments = (comments = {}, action) => {
   switch(action.type) {
-    case FETCH_COMMENTS_SUCCESS: {
-      const { fetchedComments, parentId } = action
-      return {
-        ...comments,
-        [parentId]: toIdDictionary(fetchedComments)
-      }
-    }
-
     case ADD_COMMENT_SUCCESS: {
       const { addedComment } = action
       return {
@@ -30,7 +20,6 @@ const comments = (comments = {}, action) => {
         [addedComment.id]: addedComment,
       }
     }
-
     case EDIT_COMMENT_SUCCESS: {
       const { editedComment } = action
       return {
@@ -38,7 +27,6 @@ const comments = (comments = {}, action) => {
         [editedComment.id]: editedComment,
       }
     }
-
     case VOTE_COMMENT_SUCCESS: {
       const { votedComment } = action
       return {
@@ -46,7 +34,6 @@ const comments = (comments = {}, action) => {
         [votedComment.id]: votedComment,
       }
     }
-
     case DELETE_COMMENT_SUCCESS: {
       const { deletedCommentId } = action
       return {
@@ -56,8 +43,7 @@ const comments = (comments = {}, action) => {
           deleted: true,
         }
       }
-    }  
-
+    }
     default:
       return comments
   }
