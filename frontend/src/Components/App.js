@@ -5,7 +5,7 @@ import { Container, Divider, Icon } from 'semantic-ui-react'
 import Banner from './Banner'
 import FilterAndSortMenu from './FilterAndSortMenu'
 import PostDashboard from './PostDashboard'
-import PostDetail from './PostDetail'
+import Post from './Post'
 import CommentDashboard from './CommentDashboard'
 
 const App = () => (
@@ -18,13 +18,13 @@ const App = () => (
         <PostDashboard />
       </div>
     )}/>
-    <Route path='/:category/:postId' render={() => (
+    <Route path='/:category/:postId' render={(match) => (
       <div>
         <Link to='/'>
           <Icon name='angle left' size='big' color='black'/>
         </Link>
         <Divider hidden />
-        <PostDetail />
+        <Post detailed={true}/>
         <Divider hidden />
         <CommentDashboard />
       </div>

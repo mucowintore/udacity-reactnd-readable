@@ -9,7 +9,7 @@ import { getVisiblePostsIds } from '../reducers/posts'
 const PostList = ({ postIds }) => (
       <div>
         { postIds.map((postId) =>
-          <Post key={postId} id={postId} />
+          <Post key={postId} detailed={false} id={postId}/>
         )}
       </div>
     )

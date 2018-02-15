@@ -85,8 +85,8 @@ class PostEditForm extends React.Component {
   }
 }
 
-function mapStateToProps({ posts }, { match }) {
-  return posts[match.params.postId]
+function mapStateToProps({ posts }, { postId }) {
+  return posts[postId]
 }
 
 export default withRouter(connect(mapStateToProps, { editPost })(PostEditForm))
