@@ -1,17 +1,27 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Segment, Header, Icon } from 'semantic-ui-react'
 
+import { resetSortProperty } from '../actions/ui'
 
-const Banner = () => (
-    <Segment basic textAlign='center' >
-      <Link to='/'>
-        <Header as='h1' icon>
-          <Icon name='book'/>
-          Readable
-        </Header>
-      </Link>
-    </Segment>
-)
+class Banner extends React.Component {
+  handleClick = () => {
+    this.props.resetSortProperty()
+  }
 
-export default Banner
+  render() {
+    return (
+      <Segment basic textAlign='center'>
+        <Link to='/' onClick={this.handleClick}>
+          <Header as='h1' icon>
+            <Icon name='book'/>
+            Readable
+          </Header>
+        </Link>
+      </Segment>
+    )
+  }
+}
+
+export default connect(null, { resetSortProperty })(Banner)
