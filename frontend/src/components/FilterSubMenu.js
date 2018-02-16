@@ -2,7 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { Menu, Dropdown } from 'semantic-ui-react'
-import { getDropdownCategories } from '../reducers/categories'
+
+import { capitalize } from '../utils'
 
 class FilterSubMenu extends React.Component {
   handleChange = (e, { value }) => {
@@ -31,7 +32,14 @@ class FilterSubMenu extends React.Component {
 
 function mapStateToProps({ categories }, { history, match }) {
   return {
-    categories: getDropdownCategories(categories),
+    categories: [
+      {
+        key: 'all',
+        text: 'All Categories',
+        value: 'all'
+      },
+      ...categories.map(({ name }) => ({ key: name, text: capitalize(name), value: name }))
+    ],
     activeFilterCategory: match.params.category || 'all',
     history,
   }
