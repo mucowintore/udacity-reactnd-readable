@@ -31,12 +31,6 @@ const timeElapsed = (timestamp) => {
   }
 }
 
-const trim = (str) => {
-  const trimLength = 300
-  return str.length > trimLength ? `${str.substr(0, trimLength)}...` : str
-}
-
-
 const capitalize = (str) => {
   return _.capitalize(str)
 }
@@ -47,7 +41,6 @@ const generateId = () => {
 
 export {
   timeElapsed,
-  trim,
   capitalize,
   generateId,
 }
