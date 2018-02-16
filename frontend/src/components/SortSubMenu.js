@@ -4,7 +4,6 @@ import { Menu } from 'semantic-ui-react'
 import { setSortProperty } from '../actions/ui'
 
 class SortSubMenu extends React.Component {
-
   handleClick = (e, { value }) => {
     if(value !== this.props.activeSortProperty){
       this.props.setSortProperty(value)
@@ -38,13 +37,10 @@ class SortSubMenu extends React.Component {
 }
 
 
-  function mapStateToProps({ ui }) {
-    return {
-      activeSortProperty: ui.activeSortProperty,
-    }
+function mapStateToProps({ ui }) {
+  return {
+    activeSortProperty: ui.activeSortProperty,
   }
+}
 
-  export default connect(
-    mapStateToProps,
-    { setSortProperty }
-  )(SortSubMenu)
+export default connect(mapStateToProps, { setSortProperty })(SortSubMenu)

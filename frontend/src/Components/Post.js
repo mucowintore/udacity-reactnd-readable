@@ -38,6 +38,7 @@ class Post extends React.Component {
       voteScore,
     } = this.props.post
 
+    // CSS style to be used to render the post body (see render() below)
     const postBodyStyle = (detailed)
       ? {
         wordWrap: 'break-word',
