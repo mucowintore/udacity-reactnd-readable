@@ -2,8 +2,6 @@ import {
   FETCH_CATEGORIES_SUCCESS,
 } from '../actions/categories'
 
-import { capitalize } from '../utils'
-
 const categories = (categories = [], action) => {
   switch(action.type) {
     case FETCH_CATEGORIES_SUCCESS:
