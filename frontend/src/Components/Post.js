@@ -18,8 +18,11 @@ class Post extends React.Component {
   }
   handleDelete = () => {
     this.props.deletePost(this.props.post.id)
-    // TODO redirect only in Post Detail view
-    this.props.history.push('/')
+    // redirect to post list view only in Post Detail view
+    if(this.props.detailed){
+      this.props.history.push('/')
+    }
+
   }
 
   render() {
